@@ -1,7 +1,8 @@
-let items = document.querySelectorAll(".container .box");
 let dragSrcEl;
+let items;
 
 export function eventDragStartAndDragEnd() {
+  items = document.querySelectorAll(".container .box");
   items.forEach(function (item) {
     item.removeEventListener("dragstart", handleDragStart);
     item.removeEventListener("dragover", handleDragOver);
@@ -18,9 +19,7 @@ export function eventDragStartAndDragEnd() {
     item.addEventListener("drop", handleDrop);
   });
 }
-eventDragStartAndDragEnd();
 
-// document.addEventListener("DOMContentLoaded", (event) => {
 function handleDragStart(e) {
   this.style.opacity = "0.4";
 
@@ -55,7 +54,7 @@ function handleDragLeave(e) {
 }
 
 function handleDrop(e) {
-  e.stopPropagation(); // stops the browser from redirecting.
+  e.stopPropagation();
   e.preventDefault();
 
   if (dragSrcEl !== this) {
@@ -64,5 +63,3 @@ function handleDrop(e) {
   }
   return false;
 }
-
-// });

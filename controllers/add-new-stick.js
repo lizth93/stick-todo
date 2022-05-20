@@ -2,7 +2,7 @@ import { eventDragStartAndDragEnd } from "./setupDragDrop.js";
 
 let button = document.querySelector(".btn--form");
 let items = document.querySelector(".container");
-let sticks = document.querySelectorAll(".container .box");
+let sticks;
 
 export function createNewStick() {
   button.addEventListener("click", function (e) {
@@ -22,6 +22,7 @@ export function createNewStick() {
 export function getIdNumber() {
   let idHigest = 0;
 
+  sticks = document.querySelectorAll(".container .box");
   sticks.forEach(function (stick) {
     if (idHigest < Number(stick.id)) {
       idHigest = Number(stick.id);
@@ -34,7 +35,6 @@ function setIdNumberInTheLabel(idHigest) {
   let idNumber = Number(document.querySelector(".id-number").textContent);
 
   idNumber = idHigest + 1;
-  console.log(idNumber, "the number");
 
   document.querySelector(".id-number").textContent = idNumber;
 

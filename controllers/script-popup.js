@@ -1,8 +1,10 @@
+import { getIdNumber } from "./add-new-stick";
+import { eventDragStartAndDragEnd } from "./setupDragDrop.js";
+
 const popupContent = document.querySelector(".popup__content");
 const generalContent = document.querySelector("html");
-let path;
 const popupCloseLink = document.querySelector(".popup__close");
-const bookNowPopupButton = document.querySelector(".popup-button-element");
+const createPopupButton = document.querySelector(".popup-button-element");
 
 export function listenRouteChange() {
   ["hashchange", "load"].forEach((eventName) => {
@@ -19,8 +21,11 @@ function closePopupByOutsideClick() {
       event.addEventListener("click", closePopup);
     });
 
-    bookNowPopupButton.addEventListener("click", () => {
+    createPopupButton.addEventListener("click", () => {
       window.location.hash = "#";
+
+      getIdNumber();
+      eventDragStartAndDragEnd();
     });
 
     popupContent.addEventListener("click", (e) => {
