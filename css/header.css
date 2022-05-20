@@ -1,0 +1,49 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1098ad;
+
+  height: 6rem;
+  padding: 0 4.8rem;
+}
+
+.header__logo {
+  width: 100%;
+}
+
+.navigation__list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 4.8rem;
+  fill: none;
+  stroke: white;
+  color: #e3fafc;
+}
+
+.main-nav-link:link,
+.main-nav-link:visited {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.8rem;
+  text-decoration: none;
+  font-weight: 500;
+  color: #dee2e6;
+  transition: all 0.3s;
+}
+
+.main-nav-link:hover,
+.main-nav-link:active {
+  color: #fff;
+}
+
+.btn-icon-new,
+.btn-icon-trash {
+  height: 2.6rem;
+  width: 2.6rem;
+  color: #e3fafc;
+  fill: #e3fafc;
+}

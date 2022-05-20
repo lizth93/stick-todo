@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/general.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/popup.css" />
+    <link rel="stylesheet" href="css/button.css" />
+    <link rel="stylesheet" href="css/utilities.css" />
+    <link rel="stylesheet" href="css/sticks.css" />
+    <!-- <link
+      type="image/png"
+      sizes="16x16"
+      rel="icon"
+      href=".../icons8-empty-trash-16.png"
+    /> -->
+    <script type="module" src="index.js"></script>
+    <!-- <script type="module" src="controllers/setupDragDrop.js"></script>
+    <script type="module" src="controllers/colorPiker.js"></script>
+    <script type="module" src="controllers/add-new-stick.js"></script> -->
+    <title>Sticky Notes</title>
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <a href="#">
+          <div class="header__logo-box">
+            <img src="img/logo-icon.png" alt="logo" class="header__logo" />
+          </div>
+        </a>
+
+        <nav class="navigation">
+          <ul class="navigation__list">
+            <li class="navigation__item">
+              <a class="main-nav-link" href="#popup">
+                <svg
+                  width="24"
+                  height="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  class="btn-icon-trash"
+                >
+                  <path
+                    d="M23 17h-3v-3h-2v3h-3v2h3v3h2v-3h3v-2zm-7 5v2h-15v-24h10.189c3.163 0 9.811 7.223 9.811 9.614v2.386h-2v-1.543c0-4.107-6-2.457-6-2.457s1.518-6-2.638-6h-7.362v20h13z"
+                  />
+                </svg>
+                Create New
+              </a>
+            </li>
+            <li class="navigation__item">
+              <a class="main-nav-link" href="#">
+                <svg
+                  width="24"
+                  height="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  class="btn-icon-trash"
+                >
+                  <path
+                    d="M19 24h-14c-1.104 0-2-.896-2-2v-17h-1v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2h-1v17c0 1.104-.896 2-2 2zm-14-2.5c0 .276.224.5.5.5h13c.276 0 .5-.224.5-.5v-16.5h-14v16.5zm5-18.5h4v-1h-4v1z"
+                  />
+                </svg>
+                Trash
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="container" id="container">
+        <div class="box" draggable="true">TEst</div>
+        <div class="box" draggable="true">TEst2</div>
+      </section>
+    </main>
+
+    <form class="popup" id="popup">
+      <div class="popup__content">
+        <a href="#container" class="popup__close">&times;</a>
+        <h2 class="u-margin-bottom-small">Create the Sticky</h2>
+        <div class="popup__flex">
+          <div>
+            <label for="create-text" class="create-text">Input the text</label>
+            <br />
+            <textarea
+              name="create-text"
+              id="create-text"
+              cols="30"
+              rows="5"
+              placeholder="Type the content"
+              class="create-text-area u-margin-bottom-small"
+              required
+            ></textarea>
+          </div>
+
+          <div>
+            <label for="create-color" class="create-text">Select color</label>
+            <br />
+            <input
+              type="color"
+              name="create-color"
+              id="create-color"
+              class="create-color"
+              value="#ff0000"
+            />
+          </div>
+          <label class="id-number">1</label>
+        </div>
+        <button class="btn btn--form">Create</button>
+      </div>
+    </form>
+  </body>
+</html>
