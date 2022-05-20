@@ -1,3 +1,13 @@
+/* .section-popup {
+  display: flex;
+  background-image: linear-gradient(
+    to right bottom,
+    rgba(59, 200, 219, 0.267),
+    rgba(16, 152, 173, 0.199)
+  );
+  overflow: hidden;
+} */
+
 .popup {
   height: 100vh;
   width: 100%;
@@ -6,16 +16,21 @@
   left: 0;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 2;
-
+  font-size: 1.5rem;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s;
 }
 
 .popup__content {
-  padding: 3rem;
+  display: flex;
+  /* grid-template-columns: 1fr 1fr; */
+  background-image: linear-gradient(to right bottom, #e3fafc, #c5f6fa);
+  max-height: 50rem;
   position: absolute;
+  margin: 0 auto;
   top: 50%;
+
   left: 50%;
   transform: translate(-50%, -50%);
   width: 75%;
@@ -27,10 +42,21 @@
   overflow: hidden;
   opacity: 0;
 }
-.popup__flex {
-  display: flex;
-  gap: 3rem;
+
+.popup__right {
+  padding: 4rem;
+  flex-grow: 2;
 }
+
+.popup-img-box {
+  background-image: linear-gradient(to right bottom, #99e9f283, #15abbf6b),
+    url("/img/postit.jpg");
+  background-size: cover;
+  width: 45%;
+
+  background-position: center;
+}
+
 .popup:target {
   opacity: 1;
   visibility: visible;
@@ -60,4 +86,6 @@
 textarea {
   font-size: inherit;
   color: #777;
+  margin-top: 2rem;
+  padding: 0.5rem;
 }

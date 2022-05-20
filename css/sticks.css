@@ -1,16 +1,24 @@
 .container {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+  gap: 1px;
 }
 
 .box {
+  margin: 2rem 1rem;
   background-color: #c5f6fa;
-  border: 3px solid white;
+  border: 0px solid #fff;
   border-radius: 0.5em;
-  padding: 10px;
+  padding: 2rem;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
   /* cursor: move; */
   /* min-height: 10rem; */
+  cursor: pointer;
+}
+
+.box:hover {
+  transform: scale(1.05);
   cursor: pointer;
 }
 

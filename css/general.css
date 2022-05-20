@@ -9,20 +9,22 @@ html {
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif, sans-serif;
-  line-height: 1;
-  font-weight: 400;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.6;
+  font-weight: 500;
   color: #555;
 }
 
 .container {
   display: grid;
+
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
 }
 
 .box {
   background-color: #c5f6fa;
+  font-size: 1.2rem;
   border: 3px solid white;
   border-radius: 0.5em;
   padding: 10px;
