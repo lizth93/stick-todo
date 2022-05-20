@@ -1,8 +1,7 @@
-import { eventDragStartAndDragEnd } from "./setupDragDrop.js";
-import { createNewStick } from "./add-new-stick";
+import { init } from "./add-new-stick";
+import { listenRouteChange } from "./script-popup";
 
 export function start() {
-  createNewStick();
-
-  eventDragStartAndDragEnd();
+  init();
+  listenRouteChange();
 }

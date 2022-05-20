@@ -1,5 +1,5 @@
-import Router from "./controllers/router";
+import { start } from "./controllers/router";
 
-(function start() {
-  Router.start();
+(function init() {
+  start();
 })();

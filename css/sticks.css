@@ -10,6 +10,7 @@
   border-radius: 0.5em;
   padding: 10px;
   /* cursor: move; */
+  /* min-height: 10rem; */
   cursor: pointer;
 }
 

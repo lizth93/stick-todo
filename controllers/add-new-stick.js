@@ -1,7 +1,8 @@
 import { eventDragStartAndDragEnd } from "./setupDragDrop.js";
 
 let button = document.querySelector(".btn--form");
-let container = document.querySelector(".container");
+let items = document.querySelector(".container");
+let sticks = document.querySelectorAll(".container .box");
 
 export function createNewStick() {
   button.addEventListener("click", function (e) {
@@ -11,22 +12,37 @@ export function createNewStick() {
     let newElement = document.createElement("div");
     newElement.setAttribute("draggable", "true");
     newElement.setAttribute("class", "box");
-    newElement.setAttribute("id", calculateIdNumber());
-    container.insertAdjacentElement("beforeend", newElement).append(stickNew);
-    document.querySelector(".create-text-area").value = "";
+    newElement.setAttribute("id", getIdNumber());
 
-    eventDragStartAndDragEnd();
+    items.insertAdjacentElement("beforeend", newElement).append(stickNew);
+    document.querySelector(".create-text-area").value = "";
   });
 }
-createNewStick();
 
-function calculateIdNumber() {
+export function getIdNumber() {
+  let idHigest = 0;
+
+  sticks.forEach(function (stick) {
+    if (idHigest < Number(stick.id)) {
+      idHigest = Number(stick.id);
+    }
+  });
+  return setIdNumberInTheLabel(idHigest);
+}
+
+function setIdNumberInTheLabel(idHigest) {
   let idNumber = Number(document.querySelector(".id-number").textContent);
 
-  idNumber += 1;
-  console.log(idNumber);
+  idNumber = idHigest + 1;
+  console.log(idNumber, "the number");
 
   document.querySelector(".id-number").textContent = idNumber;
 
   return idNumber;
+}
+
+export function init() {
+  getIdNumber();
+  createNewStick();
+  eventDragStartAndDragEnd();
 }
