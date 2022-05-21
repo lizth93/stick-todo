@@ -1,4 +1,4 @@
-import { start } from "./controllers/router";
+import { start } from "./js/controllers/router";
 
 (function init() {
   start();

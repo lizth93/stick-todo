@@ -1,4 +1,5 @@
 import { eventDragStartAndDragEnd } from "./setupDragDrop.js";
+import { trashController } from "./controller-trash.js";
 
 let button = document.querySelector(".btn--form");
 let items = document.querySelector(".container");
@@ -45,4 +46,5 @@ export function init() {
   getIdNumber();
   createNewStick();
   eventDragStartAndDragEnd();
+  trashController();
 }
