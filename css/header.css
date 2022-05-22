@@ -62,7 +62,7 @@
   background-color: #fff;
   box-shadow: 0 0.8rem 5rem 2rem rgba(16, 152, 173, 0.342);
   top: 4.4rem;
-
+  text-align: center;
   visibility: hidden;
   opacity: 0;
   transition: all 0.5s 0.2s;
@@ -76,4 +76,12 @@
 .nav__btn--trash:hover + .trash {
   visibility: visible;
   opacity: 1;
+}
+
+.btn-icon-smile {
+  fill: #1098ad;
+  stroke: #1098ad;
+  visibility: visible;
+  opacity: 1;
+  z-index: 20;
 }
