@@ -3,6 +3,7 @@ let items;
 
 export function eventDragStartAndDragEnd() {
   items = document.querySelectorAll(".container .box");
+
   items.forEach(function (item) {
     item.removeEventListener("dragstart", handleDragStart);
     item.removeEventListener("dragover", handleDragOver);

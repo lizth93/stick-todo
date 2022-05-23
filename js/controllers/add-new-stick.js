@@ -5,46 +5,92 @@ let button = document.querySelector(".btn--form");
 let items = document.querySelector(".container");
 let sticks;
 
+let stickersList = [];
+
+function propertiesStickers(id, value, color = "#333") {
+  let newSticker = {
+    id: id,
+    value: value,
+    color: color,
+  };
+
+  stickersList.push(newSticker);
+  setItemsLocalStorageStickers(stickersList);
+
+  console.log("stickersList", stickersList, "objeto stickers new:", newSticker);
+}
+
 export function createNewStick() {
   button.addEventListener("click", function (e) {
     e.preventDefault();
 
-    let stickNew = document.querySelector(".create-text-area").value;
-    let newElement = document.createElement("div");
-    newElement.setAttribute("draggable", "true");
-    newElement.setAttribute("class", "box");
-    newElement.setAttribute("id", getIdNumber());
+    let newStickerId = getIdNumber();
+    let newStickerValue = document.querySelector(".create-text-area").value;
 
-    items.insertAdjacentElement("beforeend", newElement).append(stickNew);
+    const newElement = propertiesOfStickersHTML(newStickerId);
+
+    items
+      .insertAdjacentElement("beforeend", newElement)
+      .append(newStickerValue);
     document.querySelector(".create-text-area").value = "";
+
+    propertiesStickers(newStickerId, newStickerValue);
   });
+}
+
+function propertiesOfStickersHTML(idNumber) {
+  let newElement = document.createElement("div");
+  newElement.setAttribute("class", "box");
+  newElement.setAttribute("draggable", "true");
+  newElement.setAttribute("id", idNumber);
+  return newElement;
+}
+
+function setItemsLocalStorageStickers(stickersList) {
+  localStorage.setItem("localStickersList", JSON.stringify(stickersList));
+}
+
+function getStikersLocalStorage() {
+  const storedList = localStorage.getItem("localStickersList");
+  if (storedList == null) {
+    stickersList = [];
+  } else {
+    stickersList = JSON.parse(storedList);
+
+    stickersList.forEach((stick) => {
+      const loadElement = propertiesOfStickersHTML(stick.id);
+      const stickContent = stick.value;
+      items
+        .insertAdjacentElement("beforeend", loadElement)
+        .append(stickContent);
+    });
+  }
+  return stickersList;
 }
 
 export function getIdNumber() {
   let idHigest = 0;
-
   sticks = document.querySelectorAll(".container .box");
   sticks.forEach(function (stick) {
     if (idHigest < Number(stick.id)) {
       idHigest = Number(stick.id);
     }
   });
+
   return setIdNumberInTheLabel(idHigest);
 }
 
 function setIdNumberInTheLabel(idHigest) {
   let idNumber = Number(document.querySelector(".id-number").textContent);
-
   idNumber = idHigest + 1;
-
   document.querySelector(".id-number").textContent = idNumber;
-
   return idNumber;
 }
 
 export function init() {
+  getStikersLocalStorage();
   getIdNumber();
   createNewStick();
-  eventDragStartAndDragEnd();
   trashController();
+  eventDragStartAndDragEnd();
 }
