@@ -3,11 +3,24 @@ import { trashController } from "./controller-trash.js";
 
 let button = document.querySelector(".btn--form");
 let items = document.querySelector(".container");
+let colorPicker = document.querySelector(".create-color");
 let sticks;
-
 let stickersList = [];
+let box = document.querySelector(".box");
 
-function propertiesStickers(id, value, color = "#333") {
+colorPicker.addEventListener("input", watchColorPicker);
+colorPicker.addEventListener("change", watchColorPicker);
+let color;
+
+function watchColorPicker() {
+  color = document.querySelector(".create-color").value;
+  console.log(color, "this is the color");
+
+  return color;
+}
+// watchColorPicker();
+
+function propertiesStickers(id, value, color = "#1098ad") {
   let newSticker = {
     id: id,
     value: value,
@@ -16,8 +29,6 @@ function propertiesStickers(id, value, color = "#333") {
 
   stickersList.push(newSticker);
   setItemsLocalStorageStickers(stickersList);
-
-  console.log("stickersList", stickersList, "objeto stickers new:", newSticker);
 }
 
 export function createNewStick() {
@@ -34,7 +45,7 @@ export function createNewStick() {
       .append(newStickerValue);
     document.querySelector(".create-text-area").value = "";
 
-    propertiesStickers(newStickerId, newStickerValue);
+    propertiesStickers(newStickerId, newStickerValue, color);
   });
 }
 
@@ -43,6 +54,9 @@ function propertiesOfStickersHTML(idNumber) {
   newElement.setAttribute("class", "box");
   newElement.setAttribute("draggable", "true");
   newElement.setAttribute("id", idNumber);
+
+  newElement.style.backgroundColor = color;
+
   return newElement;
 }
 
@@ -63,6 +77,7 @@ function getStikersLocalStorage() {
       items
         .insertAdjacentElement("beforeend", loadElement)
         .append(stickContent);
+      loadElement.style.backgroundColor = stick.color;
     });
   }
   return stickersList;

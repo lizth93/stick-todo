@@ -1,12 +1,9 @@
-// //color picker
-// let colorPicker = document.querySelector(".colorPicker");
-// colorPicker.addEventListener("input", actualizarPrimero, false);
+// let colorPicker = document.querySelector(".create-color");
+// let box = document.querySelector(".box");
+
+// colorPicker.addEventListener("input", watchColorPicker, false);
 // colorPicker.addEventListener("change", watchColorPicker, false);
 
 // function watchColorPicker(event) {
-//   document.querySelectorAll("p").forEach(function (p) {
-//     p.style.color = event.target.value;
-
-//     console.log(p.style.color);
-//   });
+//   console.log("into color picker2", event.target.value);
 // }
