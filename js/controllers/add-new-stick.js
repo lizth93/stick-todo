@@ -18,7 +18,7 @@ function watchColorPicker() {
   return color;
 }
 
-function propertiesStickers(id, value, color = "#1098ad") {
+export function propertiesStickers(id, value, color = "#1098ad") {
   let newSticker = {
     id: id,
     value: value,
@@ -43,7 +43,7 @@ export function createNewStick() {
   });
 }
 
-function setItemsLocalStorageStickers(stickersList) {
+export function setItemsLocalStorageStickers(stickersList) {
   localStorage.setItem("localStickersList", JSON.stringify(stickersList));
 }
 
