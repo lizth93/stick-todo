@@ -6,7 +6,7 @@
 
 .box {
   margin: 2rem 1rem;
-  background-color: #c5f6fa;
+  background-color: #1098ad;
   border: 0px solid #fff;
   border-radius: 0.5em;
   padding: 2rem;
@@ -15,13 +15,28 @@
   /* cursor: move; */
   /* min-height: 10rem; */
   cursor: pointer;
+  position: relative;
 }
 
 .box:hover {
   transform: scale(1.05);
   cursor: pointer;
 }
+.header-stick {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
 
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.icon-stick {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: #fff;
+  stroke: rgba(51, 51, 51, 0.699);
+}
 .box.over {
   border: 3px dotted #666;
 }

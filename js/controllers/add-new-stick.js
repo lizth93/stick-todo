@@ -1,9 +1,8 @@
 import { eventDragStartAndDragEnd } from "./setupDragDrop.js";
 import { trashController } from "./controller-trash.js";
-import { renderSticker } from "../views/render-sticker.js";
+import { clear, renderSticker } from "../views/render-sticker.js";
 
 let button = document.querySelector(".btn--form");
-let items = document.querySelector(".container");
 let colorPicker = document.querySelector(".create-color");
 let sticks;
 let stickersList = [];
@@ -55,6 +54,7 @@ function getStikersLocalStorage() {
   } else {
     stickersList = JSON.parse(storedList);
 
+    clear();
     stickersList.forEach((stick) => {
       const stickerID = stick.id;
       const stickContent = stick.value;
