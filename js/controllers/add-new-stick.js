@@ -1,12 +1,12 @@
 import { eventDragStartAndDragEnd } from "./setupDragDrop.js";
 import { trashController } from "./controller-trash.js";
+import { renderSticker } from "../views/render-sticker.js";
 
 let button = document.querySelector(".btn--form");
 let items = document.querySelector(".container");
 let colorPicker = document.querySelector(".create-color");
 let sticks;
 let stickersList = [];
-let box = document.querySelector(".box");
 
 colorPicker.addEventListener("input", watchColorPicker);
 colorPicker.addEventListener("change", watchColorPicker);
@@ -18,7 +18,6 @@ function watchColorPicker() {
 
   return color;
 }
-// watchColorPicker();
 
 function propertiesStickers(id, value, color = "#1098ad") {
   let newSticker = {
@@ -38,26 +37,11 @@ export function createNewStick() {
     let newStickerId = getIdNumber();
     let newStickerValue = document.querySelector(".create-text-area").value;
 
-    const newElement = propertiesOfStickersHTML(newStickerId);
-
-    items
-      .insertAdjacentElement("beforeend", newElement)
-      .append(newStickerValue);
+    renderSticker(newStickerId, newStickerValue, color);
     document.querySelector(".create-text-area").value = "";
 
     propertiesStickers(newStickerId, newStickerValue, color);
   });
-}
-
-function propertiesOfStickersHTML(idNumber) {
-  let newElement = document.createElement("div");
-  newElement.setAttribute("class", "box");
-  newElement.setAttribute("draggable", "true");
-  newElement.setAttribute("id", idNumber);
-
-  newElement.style.backgroundColor = color;
-
-  return newElement;
 }
 
 function setItemsLocalStorageStickers(stickersList) {
@@ -72,12 +56,11 @@ function getStikersLocalStorage() {
     stickersList = JSON.parse(storedList);
 
     stickersList.forEach((stick) => {
-      const loadElement = propertiesOfStickersHTML(stick.id);
+      const stickerID = stick.id;
       const stickContent = stick.value;
-      items
-        .insertAdjacentElement("beforeend", loadElement)
-        .append(stickContent);
-      loadElement.style.backgroundColor = stick.color;
+      const stickColor = stick.color;
+
+      renderSticker(stickerID, stickContent, stickColor);
     });
   }
   return stickersList;
