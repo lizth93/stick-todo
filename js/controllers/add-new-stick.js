@@ -1,28 +1,24 @@
 import { eventDragStartAndDragEnd } from "./setupDragDrop.js";
 import { trashController } from "./controller-trash.js";
 import { clear, renderSticker } from "../views/render-sticker.js";
+import { color } from "./colorPiker.js";
+import { trashController } from "./controller-trash";
 
 let button = document.querySelector(".btn--form");
-let colorPicker = document.querySelector(".create-color");
 let sticks;
 let stickersList = [];
 
-colorPicker.addEventListener("input", watchColorPicker);
-colorPicker.addEventListener("change", watchColorPicker);
-let color;
-
-function watchColorPicker() {
-  color = document.querySelector(".create-color").value;
-  console.log(color, "this is the color");
-
-  return color;
-}
-
-export function propertiesStickers(id, value, color = "#1098ad") {
+export function propertiesStickers(
+  id,
+  value,
+  color = "#1098ad",
+  status = "active"
+) {
   let newSticker = {
     id: id,
     value: value,
     color: color,
+    status: status,
   };
 
   stickersList.push(newSticker);
@@ -30,17 +26,20 @@ export function propertiesStickers(id, value, color = "#1098ad") {
 }
 
 export function createNewStick() {
-  button.addEventListener("click", function (e) {
-    e.preventDefault();
+  button.removeEventListener("click", clickOnButtonNewStick);
+  button.addEventListener("click", clickOnButtonNewStick);
+}
 
-    let newStickerId = getIdNumber();
-    let newStickerValue = document.querySelector(".create-text-area").value;
+function clickOnButtonNewStick(e) {
+  e.preventDefault();
 
-    renderSticker(newStickerId, newStickerValue, color);
-    document.querySelector(".create-text-area").value = "";
+  let newStickerId = getIdNumber();
+  let newStickerValue = document.querySelector(".create-text-area").value;
 
-    propertiesStickers(newStickerId, newStickerValue, color);
-  });
+  renderSticker(newStickerId, newStickerValue, color);
+  document.querySelector(".create-text-area").value = "";
+
+  propertiesStickers(newStickerId, newStickerValue, color);
 }
 
 export function setItemsLocalStorageStickers(stickersList) {
@@ -89,6 +88,8 @@ export function init() {
   getStikersLocalStorage();
   getIdNumber();
   createNewStick();
-  trashController();
+
   eventDragStartAndDragEnd();
+
+  trashController();
 }

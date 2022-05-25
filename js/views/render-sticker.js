@@ -5,38 +5,38 @@ let items = document.querySelector(".container");
 export function renderSticker(id, content, color) {
   const markup = `<div data-color="${color}" style="background-color:${color}" class="box" draggable="true" id=${id}>
     <header class="header-stick">
-    <div>
-    <a href="">
-      <svg
-        class="icon-stick"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M18.308 0l-16.87 16.873-1.436 7.127 7.125-1.437 16.872-16.875-5.691-5.688zm-15.751 21.444l.723-3.585 12.239-12.241 2.861 2.862-12.239 12.241-3.584.723zm17.237-14.378l-2.861-2.862 1.377-1.377 2.861 2.861-1.377 1.378z"
-        />
-      </svg>
-    </a>
-  </div>
-  <div>
-    <a href="">
-      <svg
-        class="icon-stick"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M23 20.168l-8.185-8.187 8.185-8.174-2.832-2.807-8.182 8.179-8.176-8.179-2.81 2.81 8.186 8.196-8.186 8.184 2.81 2.81 8.203-8.192 8.18 8.192z"
-        />
-      </svg>
-    </a>
-  </div>
+        <div>
+          <a href="" draggable="false" >
+            <svg
+              class="icon-stick"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M18.308 0l-16.87 16.873-1.436 7.127 7.125-1.437 16.872-16.875-5.691-5.688zm-15.751 21.444l.723-3.585 12.239-12.241 2.861 2.862-12.239 12.241-3.584.723zm17.237-14.378l-2.861-2.862 1.377-1.377 2.861 2.861-1.377 1.378z"
+              />
+            </svg>
+          </a>
+      </div>
+      <div>
+        <a href="" class="icon-delete" draggable="false" >
+          <svg
+            class="icon-stick icon-stick-delete"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M23 20.168l-8.185-8.187 8.185-8.174-2.832-2.807-8.182 8.179-8.176-8.179-2.81 2.81 8.186 8.196-8.186 8.184 2.81 2.81 8.203-8.192 8.18 8.192z"
+            />
+          </svg>
+        </a>
+      </div>
     </header>
-    <span>${content}</span>
+    <span class="text-content">${content}</span>
   </div>`;
 
   const htmlObject = document.createElement("div");

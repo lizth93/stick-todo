@@ -27,17 +27,13 @@ export function eventDragStartAndDragEnd() {
 }
 
 function handleDragStart(e) {
-  // const color = e.target.color;
-  // console.log("color:", color);
-
   this.style.opacity = "0.4";
 
   dragSrcEl = e.srcElement;
 
   e.dataTransfer.effectAllowed = "move";
   e.dataTransfer.setData("text/html", this.innerHTML);
-
-  console.log(e, "printing e start");
+  e.dataTransfer.color = "orangered";
 }
 
 function handleDragEnd(e) {
@@ -68,16 +64,16 @@ function handleDrop(e) {
   e.stopPropagation();
   e.preventDefault();
 
-  // let colorStickerData = dragSrcEl.dataset.color;
-  // console.log(colorStickerData, "probando color");
-
-  // e.target.
+  let colorStickerData = dragSrcEl.dataset.color;
+  console.log(colorStickerData, "probando color");
 
   if (dragSrcEl !== this) {
     dragSrcEl.innerHTML = this.innerHTML;
-    // dragSrcEl.style.backgroundColor = colorStickerData;
+
+    dragSrcEl.style.backgroundColor = colorStickerData;
+
     this.innerHTML = e.dataTransfer.getData("text/html");
-    // console.log(dragSrcEl.innerHTML, "dragSrcEl.innerHTML");
+    console.log(dragSrcEl, "dragSrcEl");
   }
 
   readAllStickersLoaded();
@@ -90,7 +86,7 @@ function readAllStickersLoaded() {
     let newSticker = {
       id: item.id,
       value: item.innerText,
-      color: "#777",
+      color: item.dataset.color,
     };
 
     stickersList.push(newSticker);

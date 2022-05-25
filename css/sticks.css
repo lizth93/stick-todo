@@ -28,6 +28,7 @@
   gap: 1rem;
 
   position: absolute;
+
   top: 1rem;
   right: 1rem;
 }
@@ -36,6 +37,17 @@
   height: 1.5rem;
   fill: #fff;
   stroke: rgba(51, 51, 51, 0.699);
+}
+
+.icon-stick:hover {
+  fill: #3bc9db;
+}
+
+.icon-stick:active {
+  fill: #99e9f2;
+}
+.text-content {
+  margin-top: 2rem;
 }
 .box.over {
   border: 3px dotted #666;

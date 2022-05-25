@@ -1,9 +1,12 @@
-// let colorPicker = document.querySelector(".create-color");
-// let box = document.querySelector(".box");
+let colorPicker = document.querySelector(".create-color");
 
-// colorPicker.addEventListener("input", watchColorPicker, false);
-// colorPicker.addEventListener("change", watchColorPicker, false);
+colorPicker.addEventListener("input", watchColorPicker);
+colorPicker.addEventListener("change", watchColorPicker);
+export let color;
 
-// function watchColorPicker(event) {
-//   console.log("into color picker2", event.target.value);
-// }
+function watchColorPicker() {
+  color = document.querySelector(".create-color").value;
+  console.log(color, "this is the color");
+
+  return color;
+}
