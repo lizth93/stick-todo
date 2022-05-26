@@ -32,3 +32,20 @@
   transform: translateY(-1px);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
+
+.btn-delete-all {
+  text-decoration: none;
+  color: #fff;
+  padding: 2px 3px;
+  background-color: #3bc9db;
+  transition: all 0.2s;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.btn-delete-all:hover {
+  background-color: #1098ad;
+}
+.btn-delete-all:active {
+  transform: translateY(2px);
+}

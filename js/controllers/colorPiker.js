@@ -6,7 +6,6 @@ export let color;
 
 function watchColorPicker() {
   color = document.querySelector(".create-color").value;
-  console.log(color, "this is the color");
 
   return color;
 }

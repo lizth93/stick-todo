@@ -1,4 +1,5 @@
-let stickersList = [];
+export let stickersList = [];
+export let stickerStatusDelete = [];
 // import { clear, renderSticker } from "../js/views/render-sticker";
 
 export function propertiesStickers(
@@ -15,7 +16,22 @@ export function propertiesStickers(
   };
 
   stickersList.push(newSticker);
+
   setItemsLocalStorageStickers(stickersList);
+}
+
+export function organiceStickersWithStatusDelete() {
+  for (let i = 0; i < stickersList.length; i++) {
+    if (stickersList[i].status === "delete") {
+      const deleteElement = stickersList[i];
+      console.log(stickersList[i], "elemento a eliminar");
+      stickerStatusDelete.push(deleteElement);
+      stickersList.splice(i, 1);
+    }
+  }
+
+  console.log("organiceStickersWithStatusDelete", stickerStatusDelete);
+  console.log("stickersList", stickersList);
 }
 
 export function setItemsLocalStorageStickers(stickersList) {
@@ -28,15 +44,6 @@ export function getStikersLocalStorage() {
     stickersList = [];
   } else {
     stickersList = JSON.parse(storedList);
-
-    // clear();
-    // stickersList.forEach((stick) => {
-    //   const stickerID = stick.id;
-    //   const stickContent = stick.value;
-    //   const stickColor = stick.color;
-
-    //   renderSticker(stickerID, stickContent, stickColor);
-    // });
   }
   return stickersList;
 }

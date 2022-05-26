@@ -1,9 +1,12 @@
 import { eventDragStartAndDragEnd } from "./setupDragDrop.js";
-import { trashController } from "./controller-trash.js";
+import { handlerClickOnButtonStickDelete } from "./controller-trash.js";
 import { renderSticker, clear } from "../views/render-sticker.js";
 import { color } from "./colorPiker.js";
-import { trashController } from "./controller-trash";
-import { propertiesStickers, getStikersLocalStorage } from "../model.js";
+import {
+  propertiesStickers,
+  getStikersLocalStorage,
+  organiceStickersWithStatusDelete,
+} from "../model.js";
 
 let button = document.querySelector(".btn--form");
 let sticks;
@@ -46,7 +49,7 @@ function setIdNumberInTheLabel(idHigest) {
 
 async function loadStickers() {
   const stickersList = await getStikersLocalStorage();
-  // console.log("stickers", stickersList);
+  console.log("inicial state:", stickersList);
 
   clear();
   stickersList.forEach((stick) => {
@@ -61,9 +64,10 @@ async function loadStickers() {
 export async function init() {
   // getStikersLocalStorage();
   await loadStickers();
+  organiceStickersWithStatusDelete();
   getIdNumber();
 
   createNewStick();
   eventDragStartAndDragEnd();
-  trashController();
+  handlerClickOnButtonStickDelete();
 }

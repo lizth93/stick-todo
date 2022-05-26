@@ -32,7 +32,7 @@ function handleDragStart(e) {
 
   e.dataTransfer.effectAllowed = "move";
   e.dataTransfer.setData("text/html", this.innerHTML);
-  e.dataTransfer.color = "orangered";
+  // e.dataTransfer.color = "orangered";
 }
 
 function handleDragEnd(e) {
@@ -64,7 +64,6 @@ function handleDrop(e) {
   e.preventDefault();
 
   let colorStickerData = dragSrcEl.dataset.color;
-  console.log(colorStickerData, "probando color");
 
   if (dragSrcEl !== this) {
     dragSrcEl.innerHTML = this.innerHTML;
@@ -86,6 +85,7 @@ function readAllStickersLoaded() {
       id: item.id,
       value: item.innerText,
       color: item.dataset.color,
+      status: "active",
     };
 
     stickersList.push(newSticker);
