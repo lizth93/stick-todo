@@ -1,4 +1,4 @@
-import { setItemsLocalStorageStickers } from "../model.js";
+import { setItemsLocalStorageStickersOnWork } from "../model.js";
 import { renderSticker } from "../views/render-sticker.js";
 
 let dragSrcEl;
@@ -90,6 +90,6 @@ function readAllStickersLoaded() {
 
     stickersList.push(newSticker);
 
-    setItemsLocalStorageStickers(stickersList);
+    setItemsLocalStorageStickersOnWork(stickersList);
   });
 }

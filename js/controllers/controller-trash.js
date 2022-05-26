@@ -1,5 +1,8 @@
-import { stickersList, organiceStickersWithStatusDelete } from "../model.js";
-import { setItemsLocalStorageStickers } from "../model.js";
+import {
+  stickersList,
+  organiceStickersWithStatusDelete,
+  loadStickers,
+} from "../model.js";
 
 export function handlerClickOnButtonStickDelete() {
   const deleteSticker = document.querySelectorAll(".icon-delete");
@@ -12,12 +15,7 @@ export function handlerClickOnButtonStickDelete() {
   });
 }
 
-// function deleteAllStickOnTheTrash() {
-
-// }
-
 function getIdNumberOfStick(e) {
-  console.log(e, "the e element");
   e.preventDefault();
 
   const stick = e.target.closest(".box");
@@ -34,5 +32,20 @@ function changeStatusOfSticker(idNumber) {
   }
 
   organiceStickersWithStatusDelete();
-  setItemsLocalStorageStickers(stickersList);
+}
+
+export function deleteAllItemsOnTheTrash() {
+  const btnDeleteAll = document.querySelector(".btn-delete-all");
+
+  if (!btnDeleteAll) return;
+  btnDeleteAll.removeEventListener("click", clickOnButtonDelete);
+  btnDeleteAll.addEventListener("click", clickOnButtonDelete);
+}
+
+function clickOnButtonDelete(e) {
+  e.preventDefault();
+
+  localStorage.removeItem("localStickersListOnTrash");
+
+  loadStickers();
 }

@@ -1,12 +1,11 @@
 import { eventDragStartAndDragEnd } from "./setupDragDrop.js";
-import { handlerClickOnButtonStickDelete } from "./controller-trash.js";
-import { renderSticker, clear } from "../views/render-sticker.js";
-import { color } from "./colorPiker.js";
 import {
-  propertiesStickers,
-  getStikersLocalStorage,
-  organiceStickersWithStatusDelete,
-} from "../model.js";
+  handlerClickOnButtonStickDelete,
+  deleteAllItemsOnTheTrash,
+} from "./controller-trash.js";
+import { renderSticker } from "../views/render-sticker.js";
+import { color } from "./colorPiker.js";
+import { propertiesStickers, loadStickers } from "../model.js";
 
 let button = document.querySelector(".btn--form");
 let sticks;
@@ -47,27 +46,13 @@ function setIdNumberInTheLabel(idHigest) {
   return idNumber;
 }
 
-async function loadStickers() {
-  const stickersList = await getStikersLocalStorage();
-  console.log("inicial state:", stickersList);
-
-  clear();
-  stickersList.forEach((stick) => {
-    const stickerID = stick.id;
-    const stickContent = stick.value;
-    const stickColor = stick.color;
-
-    renderSticker(stickerID, stickContent, stickColor);
-  });
-}
-
 export async function init() {
-  // getStikersLocalStorage();
   await loadStickers();
-  organiceStickersWithStatusDelete();
+  // // organiceStickersWithStatusDelete();
   getIdNumber();
 
   createNewStick();
   eventDragStartAndDragEnd();
   handlerClickOnButtonStickDelete();
+  deleteAllItemsOnTheTrash();
 }

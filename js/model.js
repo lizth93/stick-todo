@@ -1,6 +1,10 @@
 export let stickersList = [];
 export let stickerStatusDelete = [];
-// import { clear, renderSticker } from "../js/views/render-sticker";
+import { clear, renderSticker } from "../js/views/render-sticker";
+import {
+  clearOnTrash,
+  renderStickerOnTrash,
+} from "./views/render-sticker-trash";
 
 export function propertiesStickers(
   id,
@@ -17,25 +21,61 @@ export function propertiesStickers(
 
   stickersList.push(newSticker);
 
-  setItemsLocalStorageStickers(stickersList);
+  setItemsLocalStorageStickersOnWork(stickersList);
+}
+
+export async function loadStickers() {
+  const stickersList = await getStikersLocalStorage();
+  const stickersListOnTrash = await getStikersLocalStorageOnTrash();
+  console.log("inicial state:", stickersList);
+
+  clear();
+  stickersList.forEach((stick) => {
+    const stickerID = stick.id;
+    const stickContent = stick.value;
+    const stickColor = stick.color;
+
+    renderSticker(stickerID, stickContent, stickColor);
+  });
+
+  clearOnTrash();
+  stickerStatusDelete.forEach((stick) => {
+    const stickerIDOnTrash = stick.id;
+    const stickContentOnTrash = stick.value;
+    const stickColorOnTrash = stick.color;
+
+    renderStickerOnTrash(
+      stickerIDOnTrash,
+      stickContentOnTrash,
+      stickColorOnTrash
+    );
+  });
 }
 
 export function organiceStickersWithStatusDelete() {
   for (let i = 0; i < stickersList.length; i++) {
     if (stickersList[i].status === "delete") {
       const deleteElement = stickersList[i];
-      console.log(stickersList[i], "elemento a eliminar");
+
       stickerStatusDelete.push(deleteElement);
       stickersList.splice(i, 1);
     }
   }
 
-  console.log("organiceStickersWithStatusDelete", stickerStatusDelete);
-  console.log("stickersList", stickersList);
+  setItemsLocalStorageStickersOnWork(stickersList);
+  setItemsLocalStorageStickersOnTrash(stickerStatusDelete);
+  loadStickers();
 }
 
-export function setItemsLocalStorageStickers(stickersList) {
+export function setItemsLocalStorageStickersOnWork(stickersList) {
   localStorage.setItem("localStickersList", JSON.stringify(stickersList));
+}
+
+export function setItemsLocalStorageStickersOnTrash(stickersList) {
+  localStorage.setItem(
+    "localStickersListOnTrash",
+    JSON.stringify(stickersList)
+  );
 }
 
 export function getStikersLocalStorage() {
@@ -46,4 +86,14 @@ export function getStikersLocalStorage() {
     stickersList = JSON.parse(storedList);
   }
   return stickersList;
+}
+
+export function getStikersLocalStorageOnTrash() {
+  const storedList = localStorage.getItem("localStickersListOnTrash");
+  if (storedList == null) {
+    stickerStatusDelete = [];
+  } else {
+    stickerStatusDelete = JSON.parse(storedList);
+  }
+  return stickerStatusDelete;
 }

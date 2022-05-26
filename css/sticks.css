@@ -14,6 +14,7 @@
     rgba(17, 17, 26, 0.05) 0px 8px 32px;
   /* cursor: move; */
   /* min-height: 10rem; */
+  display: flex;
   cursor: pointer;
   position: relative;
 }
@@ -22,11 +23,15 @@
   transform: scale(1.05);
   cursor: pointer;
 }
+
+.id-number {
+  opacity: 0;
+  display: none;
+}
 .header-stick {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
-
+  gap: 1.5rem;
   position: absolute;
 
   top: 1rem;
@@ -51,4 +56,10 @@
 }
 .box.over {
   border: 3px dotted #666;
+}
+
+/* ////////////Trash/////////// */
+
+.trash {
+  padding: 3rem 3rem;
 }
