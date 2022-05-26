@@ -4,10 +4,17 @@ export function trashController() {
   if (!deleteSticker) return;
 
   deleteSticker.forEach((elem) => {
-    elem.addEventListener("click", function (e) {
-      e.preventDefault();
-      const btn = e.target.closest(".icon-delete");
-      console.log("click in b");
-    });
+    elem.removeEventListener("click", clickOnDeleteButton);
+    elem.addEventListener("click", clickOnDeleteButton);
   });
+}
+
+function clickOnDeleteButton(e) {
+  console.log(e, "the e element");
+  e.preventDefault();
+
+  const stick = e.target.closest(".box");
+  let idNumber = Number(stick.id);
+
+  console.log(idNumber, "this is the id");
 }
