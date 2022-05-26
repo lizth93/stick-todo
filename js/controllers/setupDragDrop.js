@@ -1,7 +1,5 @@
-import {
-  propertiesStickers,
-  setItemsLocalStorageStickers,
-} from "./add-new-stick";
+import { setItemsLocalStorageStickers } from "../model.js";
+import { renderSticker } from "../views/render-sticker.js";
 
 let dragSrcEl;
 let items;
@@ -27,6 +25,7 @@ export function eventDragStartAndDragEnd() {
 }
 
 function handleDragStart(e) {
+  console.log("start drag", "handle");
   this.style.opacity = "0.4";
 
   dragSrcEl = e.srcElement;

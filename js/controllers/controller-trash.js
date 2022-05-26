@@ -17,4 +17,8 @@ function clickOnDeleteButton(e) {
   let idNumber = Number(stick.id);
 
   console.log(idNumber, "this is the id");
+
+  changeStatusOfSticker(idNumber);
 }
+
+function changeStatusOfSticker(idNumber) {}

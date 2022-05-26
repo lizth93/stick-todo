@@ -1,36 +1,19 @@
 import { eventDragStartAndDragEnd } from "./setupDragDrop.js";
 import { trashController } from "./controller-trash.js";
-import { clear, renderSticker } from "../views/render-sticker.js";
+import { renderSticker, clear } from "../views/render-sticker.js";
 import { color } from "./colorPiker.js";
 import { trashController } from "./controller-trash";
+import { propertiesStickers, getStikersLocalStorage } from "../model.js";
 
 let button = document.querySelector(".btn--form");
 let sticks;
-let stickersList = [];
-
-export function propertiesStickers(
-  id,
-  value,
-  color = "#1098ad",
-  status = "active"
-) {
-  let newSticker = {
-    id: id,
-    value: value,
-    color: color,
-    status: status,
-  };
-
-  stickersList.push(newSticker);
-  setItemsLocalStorageStickers(stickersList);
-}
 
 export function createNewStick() {
-  button.removeEventListener("click", clickOnButtonNewStick);
-  button.addEventListener("click", clickOnButtonNewStick);
+  button.removeEventListener("click", handlerClickOnButtonNewStick);
+  button.addEventListener("click", handlerClickOnButtonNewStick);
 }
 
-function clickOnButtonNewStick(e) {
+function handlerClickOnButtonNewStick(e) {
   e.preventDefault();
 
   let newStickerId = getIdNumber();
@@ -40,29 +23,6 @@ function clickOnButtonNewStick(e) {
   document.querySelector(".create-text-area").value = "";
 
   propertiesStickers(newStickerId, newStickerValue, color);
-}
-
-export function setItemsLocalStorageStickers(stickersList) {
-  localStorage.setItem("localStickersList", JSON.stringify(stickersList));
-}
-
-function getStikersLocalStorage() {
-  const storedList = localStorage.getItem("localStickersList");
-  if (storedList == null) {
-    stickersList = [];
-  } else {
-    stickersList = JSON.parse(storedList);
-
-    clear();
-    stickersList.forEach((stick) => {
-      const stickerID = stick.id;
-      const stickContent = stick.value;
-      const stickColor = stick.color;
-
-      renderSticker(stickerID, stickContent, stickColor);
-    });
-  }
-  return stickersList;
 }
 
 export function getIdNumber() {
@@ -84,12 +44,26 @@ function setIdNumberInTheLabel(idHigest) {
   return idNumber;
 }
 
-export function init() {
-  getStikersLocalStorage();
+async function loadStickers() {
+  const stickersList = await getStikersLocalStorage();
+  // console.log("stickers", stickersList);
+
+  clear();
+  stickersList.forEach((stick) => {
+    const stickerID = stick.id;
+    const stickContent = stick.value;
+    const stickColor = stick.color;
+
+    renderSticker(stickerID, stickContent, stickColor);
+  });
+}
+
+export async function init() {
+  // getStikersLocalStorage();
+  await loadStickers();
   getIdNumber();
+
   createNewStick();
-
   eventDragStartAndDragEnd();
-
   trashController();
 }
