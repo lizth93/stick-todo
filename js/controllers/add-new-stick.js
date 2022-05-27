@@ -1,29 +1,37 @@
 import { eventDragStartAndDragEnd } from "./setupDragDrop.js";
 import {
   handlerClickOnButtonStickDelete,
+  handlerClickOnBtnReturnItemOfTrash,
   deleteAllItemsOnTheTrash,
 } from "./controller-trash.js";
 import { renderSticker } from "../views/render-sticker.js";
+import { getStickersDeteled } from "../views/render-sticker-trash";
 import { color } from "./colorPiker.js";
 import { propertiesStickers, loadStickers } from "../model.js";
 import { getStickers } from "../views/render-sticker";
 
 export function init() {
   loadStickers();
-  // TODO: Delete this invokation of getIdNumber().
-  // This method should be invoked only when a new sticket is created.
-  getIdNumber();
   listenToNewStickSubmit();
   eventDragStartAndDragEnd();
   handlerClickOnButtonStickDelete();
+  handlerClickOnBtnReturnItemOfTrash();
   deleteAllItemsOnTheTrash();
 }
 
 let sticks;
+let idHigest = 0;
 export function getIdNumber() {
-  let idHigest = 0;
   sticks = getStickers();
+  sticksDelete = getStickersDeteled();
+
   sticks.forEach(function (stick) {
+    if (idHigest < Number(stick.id)) {
+      idHigest = Number(stick.id);
+    }
+  });
+
+  sticksDelete.forEach(function (stick) {
     if (idHigest < Number(stick.id)) {
       idHigest = Number(stick.id);
     }
@@ -41,6 +49,7 @@ function setIdNumberInTheLabel(idHigest) {
 
 let button = document.querySelector(".btn--form");
 function listenToNewStickSubmit() {
+  getIdNumber();
   button.removeEventListener("click", handlerClickOnButtonNewStick);
   button.addEventListener("click", handlerClickOnButtonNewStick);
 }
@@ -55,4 +64,5 @@ function handlerClickOnButtonNewStick(e) {
   document.querySelector(".create-text-area").value = "";
 
   propertiesStickers(newStickerId, newStickerValue, color);
+  loadStickers();
 }

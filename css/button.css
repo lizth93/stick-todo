@@ -3,7 +3,7 @@
 .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
-  padding: 1rem 4rem;
+  padding: 1rem 3rem;
   display: inline-block;
   border-radius: 10rem;
   transition: all 0.2s;
@@ -33,19 +33,10 @@
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
-.btn-delete-all {
-  text-decoration: none;
+.btn-delete-all,
+.btn-restore-all {
   color: #fff;
-  padding: 2px 3px;
+  text-decoration: none;
   background-color: #3bc9db;
   transition: all 0.2s;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-.btn-delete-all:hover {
-  background-color: #1098ad;
-}
-.btn-delete-all:active {
-  transform: translateY(2px);
 }

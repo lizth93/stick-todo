@@ -17,6 +17,7 @@
   display: flex;
   cursor: pointer;
   position: relative;
+  transition: all 0.3s;
 }
 
 .box:hover {
@@ -25,8 +26,8 @@
 }
 
 .id-number {
-  opacity: 0;
-  display: none;
+  /* opacity: 0;
+  display: none; */
 }
 .header-stick {
   display: flex;
@@ -34,6 +35,7 @@
   gap: 1.5rem;
   position: absolute;
 
+  padding: 1rem;
   top: 1rem;
   right: 1rem;
 }
@@ -41,18 +43,29 @@
   width: 1.5rem;
   height: 1.5rem;
   fill: #fff;
-  stroke: rgba(51, 51, 51, 0.699);
+  background-color: transparent;
+  border-radius: 20%;
+  stroke: #777;
 }
 
 .icon-stick:hover {
   fill: #3bc9db;
+  transform: scale(1.5);
 }
 
 .icon-stick:active {
   fill: #99e9f2;
+  transform: scale(1);
 }
 .text-content {
   margin-top: 2rem;
+  font-family: inherit;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.1rem;
+
+  -webkit-text-stroke: 0.4px #333;
 }
 .box.over {
   border: 3px dotted #666;
@@ -62,4 +75,6 @@
 
 .trash {
   padding: 3rem 3rem;
+  max-height: 85vh;
+  overflow: scroll;
 }

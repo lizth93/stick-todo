@@ -2,9 +2,9 @@
 
 let items = document.querySelector(".container");
 
-export function renderSticker(id, content, color) {
+export function renderSticker(stick) {
   const markup = `
-  <div data-color="${color}" style="background-color:${color}" class="box" draggable="true" id=${id}>
+  <div data-color="${stick.color}" style="background-color:${stick.color}" class="box" draggable="true" id=${stick.id}>
     <header class="header-stick">
         <div>
           <a href="" draggable="false" >
@@ -37,7 +37,7 @@ export function renderSticker(id, content, color) {
         </a>
       </div>
     </header>
-    <span class="text-content">${content}</span>
+    <span class="text-content">${stick.value}</span>
   </div>`;
 
   const htmlObject = document.createElement("div");

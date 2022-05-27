@@ -1,4 +1,4 @@
-import { setItemsLocalStorageStickersOnWork } from "../model.js";
+import { setItemsLocalStorageStickersOnWork, loadStickers } from "../model.js";
 import { getStickers } from "../views/render-sticker";
 
 let dragSrcEl;
@@ -27,6 +27,7 @@ export function eventDragStartAndDragEnd() {
 function handleDragStart(e) {
   this.style.opacity = "0.4";
   dragSrcEl = e.srcElement;
+  console.log(dragSrcEl, "the initial element");
 }
 
 function handleDragEnd(e) {
@@ -87,5 +88,6 @@ function readAllStickersLoaded() {
     stickersList.push(newSticker);
 
     setItemsLocalStorageStickersOnWork(stickersList);
+    loadStickers();
   });
 }

@@ -30,24 +30,12 @@ export function loadStickers() {
   clear();
 
   stickers.forEach((stick) => {
-    const stickerID = stick.id;
-    const stickContent = stick.value;
-    const stickColor = stick.color;
-
-    renderSticker(stickerID, stickContent, stickColor);
+    renderSticker(stick);
   });
 
   clearOnTrash();
   stickerStatusDelete.forEach((stick) => {
-    const stickerIDOnTrash = stick.id;
-    const stickContentOnTrash = stick.value;
-    const stickColorOnTrash = stick.color;
-
-    renderStickerOnTrash(
-      stickerIDOnTrash,
-      stickContentOnTrash,
-      stickColorOnTrash
-    );
+    renderStickerOnTrash(stick);
   });
 }
 
@@ -61,6 +49,23 @@ export function organiceStickersWithStatusDelete() {
     }
   }
 
+  refreshItemsLocalStorage();
+}
+
+export function organiceStickersWithStatusActive() {
+  for (let i = 0; i < stickerStatusDelete.length; i++) {
+    if (stickerStatusDelete[i].status === "active") {
+      const activeElement = stickerStatusDelete[i];
+
+      stickersList.push(activeElement);
+      stickerStatusDelete.splice(i, 1);
+    }
+  }
+
+  refreshItemsLocalStorage();
+}
+
+function refreshItemsLocalStorage() {
   setItemsLocalStorageStickersOnWork(stickersList);
   setItemsLocalStorageStickersOnTrash(stickerStatusDelete);
   loadStickers();
