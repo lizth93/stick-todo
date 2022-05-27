@@ -6,30 +6,23 @@ import {
 import { renderSticker } from "../views/render-sticker.js";
 import { color } from "./colorPiker.js";
 import { propertiesStickers, loadStickers } from "../model.js";
+import { getStickers } from "../views/render-sticker";
 
-let button = document.querySelector(".btn--form");
+export function init() {
+  loadStickers();
+  // TODO: Delete this invokation of getIdNumber().
+  // This method should be invoked only when a new sticket is created.
+  getIdNumber();
+  listenToNewStickSubmit();
+  eventDragStartAndDragEnd();
+  handlerClickOnButtonStickDelete();
+  deleteAllItemsOnTheTrash();
+}
+
 let sticks;
-
-export function createNewStick() {
-  button.removeEventListener("click", handlerClickOnButtonNewStick);
-  button.addEventListener("click", handlerClickOnButtonNewStick);
-}
-
-function handlerClickOnButtonNewStick(e) {
-  e.preventDefault();
-
-  let newStickerId = getIdNumber();
-  let newStickerValue = document.querySelector(".create-text-area").value;
-
-  renderSticker(newStickerId, newStickerValue, color);
-  document.querySelector(".create-text-area").value = "";
-
-  propertiesStickers(newStickerId, newStickerValue, color);
-}
-
 export function getIdNumber() {
   let idHigest = 0;
-  sticks = document.querySelectorAll(".container .box");
+  sticks = getStickers();
   sticks.forEach(function (stick) {
     if (idHigest < Number(stick.id)) {
       idHigest = Number(stick.id);
@@ -46,13 +39,20 @@ function setIdNumberInTheLabel(idHigest) {
   return idNumber;
 }
 
-export async function init() {
-  await loadStickers();
-  // // organiceStickersWithStatusDelete();
-  getIdNumber();
+let button = document.querySelector(".btn--form");
+function listenToNewStickSubmit() {
+  button.removeEventListener("click", handlerClickOnButtonNewStick);
+  button.addEventListener("click", handlerClickOnButtonNewStick);
+}
 
-  createNewStick();
-  eventDragStartAndDragEnd();
-  handlerClickOnButtonStickDelete();
-  deleteAllItemsOnTheTrash();
+function handlerClickOnButtonNewStick(e) {
+  e.preventDefault();
+
+  let newStickerId = getIdNumber();
+  let newStickerValue = document.querySelector(".create-text-area").value;
+
+  renderSticker(newStickerId, newStickerValue, color);
+  document.querySelector(".create-text-area").value = "";
+
+  propertiesStickers(newStickerId, newStickerValue, color);
 }

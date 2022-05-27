@@ -1,7 +1,8 @@
 let items = document.querySelector(".trash__list");
 
 export function renderStickerOnTrash(id, content, color) {
-  const markup = `<div data-color="${color}" style="background-color:${color}" class="box" draggable="true" id=${id}>
+  const markup = `
+  <div data-color="${color}" style="background-color:${color}" class="box" draggable="true" id=${id}>
     <header class="header-stick">
         
       <div>

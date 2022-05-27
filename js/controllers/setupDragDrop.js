@@ -1,11 +1,11 @@
 import { setItemsLocalStorageStickersOnWork } from "../model.js";
-import { renderSticker } from "../views/render-sticker.js";
+import { getStickers } from "../views/render-sticker";
 
 let dragSrcEl;
 let items;
 
 export function eventDragStartAndDragEnd() {
-  items = document.querySelectorAll(".container .box");
+  items = getStickers();
 
   items.forEach(function (item) {
     item.removeEventListener("dragstart", handleDragStart);
@@ -32,7 +32,6 @@ function handleDragStart(e) {
 
   e.dataTransfer.effectAllowed = "move";
   e.dataTransfer.setData("text/html", this.innerHTML);
-  // e.dataTransfer.color = "orangered";
 }
 
 function handleDragEnd(e) {

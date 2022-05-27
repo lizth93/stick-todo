@@ -3,7 +3,8 @@
 let items = document.querySelector(".container");
 
 export function renderSticker(id, content, color) {
-  const markup = `<div data-color="${color}" style="background-color:${color}" class="box" draggable="true" id=${id}>
+  const markup = `
+  <div data-color="${color}" style="background-color:${color}" class="box" draggable="true" id=${id}>
     <header class="header-stick">
         <div>
           <a href="" draggable="false" >
@@ -47,4 +48,8 @@ export function renderSticker(id, content, color) {
 
 export function clear() {
   items.innerHTML = "";
+}
+
+export function getStickers() {
+  return document.querySelectorAll(".container .box");
 }

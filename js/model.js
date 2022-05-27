@@ -24,13 +24,12 @@ export function propertiesStickers(
   setItemsLocalStorageStickersOnWork(stickersList);
 }
 
-export async function loadStickers() {
-  const stickersList = await getStikersLocalStorage();
-  const stickersListOnTrash = await getStikersLocalStorageOnTrash();
-  console.log("inicial state:", stickersList);
-
+export function loadStickers() {
+  const stickers = getStikersLocalStorage();
+  getStikersLocalStorageOnTrash();
   clear();
-  stickersList.forEach((stick) => {
+
+  stickers.forEach((stick) => {
     const stickerID = stick.id;
     const stickContent = stick.value;
     const stickColor = stick.color;
@@ -79,21 +78,32 @@ export function setItemsLocalStorageStickersOnTrash(stickersList) {
 }
 
 export function getStikersLocalStorage() {
-  const storedList = localStorage.getItem("localStickersList");
-  if (storedList == null) {
-    stickersList = [];
-  } else {
-    stickersList = JSON.parse(storedList);
-  }
+  const stickers = getStickersFromLocalStorage("localStickersList");
+  stickersList = stickers && stickers.length ? stickers : [];
+
   return stickersList;
 }
 
 export function getStikersLocalStorageOnTrash() {
-  const storedList = localStorage.getItem("localStickersListOnTrash");
-  if (storedList == null) {
-    stickerStatusDelete = [];
-  } else {
-    stickerStatusDelete = JSON.parse(storedList);
-  }
+  const stickers = getStickersFromLocalStorage("localStickersListOnTrash");
+  stickerStatusDelete = stickers && stickers.length ? stickers : [];
+
   return stickerStatusDelete;
+}
+
+function getStickersFromLocalStorage(key) {
+  const stickers = localStorage.getItem(key);
+
+  try {
+    const stickersParsed = JSON.parse(stickers);
+
+    return stickersParsed;
+  } catch (err) {
+    console.log(
+      `Stickers with key ${key} got corrupted. Clearing local storage.`
+    );
+    localStorage.removeItem(key);
+
+    return null;
+  }
 }
