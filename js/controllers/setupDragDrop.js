@@ -25,13 +25,8 @@ export function eventDragStartAndDragEnd() {
 }
 
 function handleDragStart(e) {
-  console.log("start drag", "handle");
   this.style.opacity = "0.4";
-
   dragSrcEl = e.srcElement;
-
-  e.dataTransfer.effectAllowed = "move";
-  e.dataTransfer.setData("text/html", this.innerHTML);
 }
 
 function handleDragEnd(e) {
@@ -62,15 +57,17 @@ function handleDrop(e) {
   e.stopPropagation();
   e.preventDefault();
 
-  let colorStickerData = dragSrcEl.dataset.color;
+  let srcColor = dragSrcEl.dataset.color;
+  let srcText = dragSrcEl.querySelector(".text-content").innerHTML;
 
   if (dragSrcEl !== this) {
     dragSrcEl.innerHTML = this.innerHTML;
+    dragSrcEl.style.backgroundColor = this.dataset.color;
+    dragSrcEl.dataset.color = this.dataset.color;
 
-    dragSrcEl.style.backgroundColor = colorStickerData;
-
-    this.innerHTML = e.dataTransfer.getData("text/html");
-    console.log(dragSrcEl, "dragSrcEl");
+    this.innerHTML = srcText;
+    this.style.backgroundColor = srcColor;
+    this.dataset.color = srcColor;
   }
 
   readAllStickersLoaded();
