@@ -3,6 +3,7 @@ import {
   handlerClickOnButtonStickDelete,
   handlerClickOnBtnReturnItemOfTrash,
   deleteAllItemsOnTheTrash,
+  handlerClickOnBtnRestoreAll,
 } from "./controller-trash.js";
 import { renderSticker } from "../views/render-sticker.js";
 import { getStickersDeteled } from "../views/render-sticker-trash";
@@ -13,13 +14,15 @@ import { getStickers } from "../views/render-sticker";
 export function init() {
   loadStickers();
   listenToNewStickSubmit();
-  eventDragStartAndDragEnd();
   handlerClickOnButtonStickDelete();
   handlerClickOnBtnReturnItemOfTrash();
   deleteAllItemsOnTheTrash();
+  handlerClickOnBtnRestoreAll();
+  eventDragStartAndDragEnd();
 }
 
 let sticks;
+let sticksDelete;
 let idHigest = 0;
 export function getIdNumber() {
   sticks = getStickers();

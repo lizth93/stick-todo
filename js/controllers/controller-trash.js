@@ -4,7 +4,10 @@ import {
   organiceStickersWithStatusDelete,
   organiceStickersWithStatusActive,
   loadStickers,
+  setItemsLocalStorageStickersOnWork,
 } from "../model.js";
+
+import { getStickersDeteled } from "../views/render-sticker-trash";
 
 export function handlerClickOnButtonStickDelete() {
   const deleteSticker = document.querySelectorAll(".icon-delete");
@@ -69,8 +72,6 @@ function getIdNumberOfStickReturn(e) {
   const stick = e.target.closest(".box");
   let idNumber = Number(stick.id);
 
-  // console.log(idNumber, "idNumber from trash");
-
   changeStatusOfStickerReturn(idNumber);
 }
 
@@ -82,4 +83,35 @@ function changeStatusOfStickerReturn(idNumber) {
   }
 
   organiceStickersWithStatusActive();
+}
+
+/////////////////////////////////////////////////////////////
+
+export function handlerClickOnBtnRestoreAll() {
+  const btnRestoreAll = document.querySelector(".btn-restore-all");
+
+  btnRestoreAll.removeEventListener("click", restoreAllElements);
+  btnRestoreAll.addEventListener("click", restoreAllElements);
+}
+
+function restoreAllElements(e) {
+  e.preventDefault();
+  const stickersTrash = getStickersDeteled();
+  console.log(stickersTrash, "stickers on trash");
+
+  stickerStatusDelete = [];
+  stickersTrash.forEach((item) => {
+    let newSticker = {
+      id: item.id,
+      value: item.innerText,
+      color: item.dataset.color,
+      status: "active",
+    };
+
+    stickersList.push(newSticker);
+
+    setItemsLocalStorageStickersOnWork(stickersList);
+    localStorage.removeItem("localStickersListOnTrash");
+    loadStickers();
+  });
 }
