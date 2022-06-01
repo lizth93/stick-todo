@@ -17,7 +17,7 @@ export function renderStickerOnTrash(stick) {
         </button>
       </div>
       <div>
-        <button class="btn-box icon-delete" draggable="false" >
+        <button class="btn-box btn-icon-delete" draggable="false" >
           <svg
             class="icon-stick icon-delete-svg icon-stick-delete"
             xmlns="http://www.w3.org/2000/svg"

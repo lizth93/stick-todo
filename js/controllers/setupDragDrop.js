@@ -28,7 +28,6 @@ export function eventDragStartAndDragEnd() {
 function handleDragStart(e) {
   this.style.opacity = "0.4";
   dragSrcEl = e.srcElement;
-  console.log(dragSrcEl, "the initial element");
 }
 
 function handleDragEnd(e) {

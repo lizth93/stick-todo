@@ -3,6 +3,7 @@ import {
   handlerClickOnButtonStickDelete,
   handlerClickOnBtnReturnItemOfTrash,
   deleteAllItemsOnTheTrash,
+  handlerClickOnBtnDeleteItemOfTrash,
   handlerClickOnBtnRestoreAll,
 } from "./controller-trash.js";
 import { renderSticker } from "../views/render-sticker.js";
@@ -16,6 +17,7 @@ export function init() {
   listenToNewStickSubmit();
   handlerClickOnButtonStickDelete();
   handlerClickOnBtnReturnItemOfTrash();
+  handlerClickOnBtnDeleteItemOfTrash();
   deleteAllItemsOnTheTrash();
   handlerClickOnBtnRestoreAll();
   eventDragStartAndDragEnd();

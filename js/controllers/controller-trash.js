@@ -8,6 +8,7 @@ import {
 } from "../model.js";
 
 import { getStickersDeteled } from "../views/render-sticker-trash";
+import { init } from "./add-new-stick.js";
 
 export function handlerClickOnButtonStickDelete() {
   const deleteSticker = document.querySelectorAll(".icon-delete");
@@ -54,10 +55,9 @@ function clickOnButtonDeleteAll(e) {
   loadStickers();
 }
 
-//////////////////////////////////////////////////////////////////////////////////
+//////////////////////RETURN//////////////////////////////////
 export function handlerClickOnBtnReturnItemOfTrash() {
   const btnReturnStick = document.querySelectorAll(".icon-return");
-  console.log(btnReturnStick, "testing return icon");
 
   if (!btnReturnStick) return;
 
@@ -83,6 +83,40 @@ function changeStatusOfStickerReturn(idNumber) {
   }
 
   organiceStickersWithStatusActive();
+}
+
+//////////////////////DELETE OF TRASH BY ONE//////////////////////////////////
+
+export function handlerClickOnBtnDeleteItemOfTrash() {
+  const btnDeleteOfTrashStick = document.querySelectorAll(".btn-icon-delete");
+
+  if (!btnDeleteOfTrashStick) return;
+
+  btnDeleteOfTrashStick.forEach((elem) => {
+    elem.removeEventListener("click", getIdNumberOfStickDelete);
+    elem.addEventListener("click", getIdNumberOfStickDelete);
+  });
+}
+
+function getIdNumberOfStickDelete(e) {
+  e.preventDefault();
+  const stick = e.target.closest(".box");
+  let idNumber = Number(stick.id);
+
+  console.log("id delete", idNumber);
+  changeStatusOfStickerDelete(idNumber);
+}
+
+function changeStatusOfStickerDelete(idNumber) {
+  for (let i = 0; i < stickerStatusDelete.length; i++) {
+    if (Number(stickerStatusDelete[i].id) === idNumber) {
+      // const activeElement = stickerStatusDelete[i];
+
+      stickerStatusDelete.splice(i, 1);
+
+      organiceStickersWithStatusActive();
+    }
+  }
 }
 
 /////////////////////////////////////////////////////////////
@@ -112,6 +146,6 @@ function restoreAllElements(e) {
 
     setItemsLocalStorageStickersOnWork(stickersList);
     localStorage.removeItem("localStickersListOnTrash");
-    loadStickers();
+    init();
   });
 }
