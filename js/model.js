@@ -1,6 +1,7 @@
 export let stickersList = [];
 export let stickerStatusDelete = [];
 import { clear, renderSticker } from "../js/views/render-sticker";
+import { init } from "./controllers/add-new-stick";
 import {
   clearOnTrash,
   renderStickerOnTrash,
@@ -68,7 +69,7 @@ export function organiceStickersWithStatusActive() {
 function refreshItemsLocalStorage() {
   setItemsLocalStorageStickersOnWork(stickersList);
   setItemsLocalStorageStickersOnTrash(stickerStatusDelete);
-  loadStickers();
+  init();
 }
 
 export function setItemsLocalStorageStickersOnWork(stickersList) {

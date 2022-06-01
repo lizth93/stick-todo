@@ -40,3 +40,9 @@
   background-color: #3bc9db;
   transition: all 0.2s;
 }
+
+.btn-box {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}

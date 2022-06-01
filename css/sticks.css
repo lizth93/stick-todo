@@ -1,23 +1,25 @@
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1px;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 30rem));
+
+  align-items: center;
+  gap: 1vh;
+  margin: 2rem 2rem -1rem 2rem;
 }
 
 .box {
-  margin: 2rem 1rem;
   background-color: #1098ad;
   border: 0px solid #fff;
   border-radius: 0.5em;
   padding: 2rem;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
     rgba(17, 17, 26, 0.05) 0px 8px 32px;
-  /* cursor: move; */
-  /* min-height: 10rem; */
+
   display: flex;
   cursor: pointer;
   position: relative;
   transition: all 0.3s;
+  margin-bottom: 2rem;
 }
 
 .box:hover {
@@ -60,7 +62,7 @@
 .text-content {
   margin-top: 2rem;
   font-family: inherit;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #fff;
   letter-spacing: 0.1rem;
