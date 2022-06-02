@@ -1,6 +1,10 @@
 export let popup = document.querySelector(".section-popup");
 
-export function renderPopupModification() {
+export function renderPopupModification(
+  idNumber,
+  colorActually,
+  valueActually
+) {
   clear();
   const markup = `
   <form class="popup" id="popup">
@@ -14,7 +18,7 @@ export function renderPopupModification() {
         <a href="#container" class="popup__close">&times;</a>
         <h2 class="u-margin-bottom-small">Modify the Sticky</h2>
         <div class="popup__flex">
-          <label class="id-number">0</label>
+          <label class="id-number">${idNumber}</label>
           <div>
             <label for="create-text" class="create-text"
               >Input the text</label
@@ -28,7 +32,7 @@ export function renderPopupModification() {
               placeholder="Type the content"
               class="create-text-area u-margin-bottom-small"
               required
-            ></textarea>
+            >${valueActually}</textarea>
           </div>
 
           <div>
@@ -41,7 +45,7 @@ export function renderPopupModification() {
               name="create-color"
               id="create-color"
               class="create-color"
-              value="#1098ad"
+              value=${colorActually}
             />
           </div>
         </div>

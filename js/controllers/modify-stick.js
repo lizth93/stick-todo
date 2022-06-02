@@ -1,4 +1,6 @@
+import { organiceStickersWithStatusActive, stickersList } from "../model";
 import { renderPopupModification } from "../views/render-popup-modify";
+import { handlerClickColorPicker } from "./colorPiker";
 
 export function handlerClickOnModifySticker() {
   const btnModifyStick = document.querySelectorAll(".btn-box-edit");
@@ -11,14 +13,52 @@ export function handlerClickOnModifySticker() {
   });
 }
 
+let idNumber;
 function getIdNumberOfStick(e) {
   e.preventDefault();
   const stick = e.target.closest(".box");
-  let idNumber = Number(stick.id);
-  console.log("the stick to edit is", idNumber);
-  moduleToModifySticker(idNumber);
+  idNumber = Number(stick.id);
+
+  renderInfoToStikerToModify(idNumber);
 }
 
-function moduleToModifySticker(idNumber) {
-  renderPopupModification();
+function renderInfoToStikerToModify(idNumber) {
+  let colorActually;
+  let valueActually;
+
+  for (let i = 0; i < stickersList.length; i++) {
+    if (Number(stickersList[i].id) === idNumber) {
+      colorActually = stickersList[i].color;
+      valueActually = stickersList[i].value;
+    }
+  }
+
+  renderPopupModification(idNumber, colorActually, valueActually);
+  handlerClickOnSaveChangesToStick(idNumber);
+}
+
+function handlerClickOnSaveChangesToStick() {
+  const buttonSaveChanges = document.querySelector(".popup-button-element");
+  buttonSaveChanges.removeEventListener("click", saveChangesOnStick);
+  buttonSaveChanges.addEventListener("click", saveChangesOnStick);
+}
+
+export function saveChangesOnStick(e) {
+  e.preventDefault();
+  let colorNew = handlerClickColorPicker();
+
+  console.log("this is the new color", colorNew);
+  let valueNew = document.querySelector(".create-text-area").value;
+  console.log("this is the new value", valueNew);
+
+  console.log(idNumber, "here idd");
+  for (let i = 0; i < stickersList.length; i++) {
+    if (Number(stickersList[i].id) === idNumber) {
+      stickersList[i].color = colorNew;
+      stickersList[i].value = valueNew;
+    }
+  }
+
+  organiceStickersWithStatusActive();
+  console.log(stickersList, "stickerslist");
 }

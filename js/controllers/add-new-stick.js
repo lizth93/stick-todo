@@ -47,8 +47,6 @@ function theHigestNumber(sticks) {
       idHigest = Number(stick.id);
     }
   });
-
-  console.log("the id number higest is", idHigest);
 }
 
 function listenToNewStickSubmit() {
@@ -64,8 +62,6 @@ function handlerClickOnButtonNewStick(e) {
   let newStickerId = idHigest + 1;
   let newStickerValue = document.querySelector(".create-text-area").value;
   const color = watchColorPicker();
-  console.log("this is the color,", color);
-
   document.querySelector(".create-text-area").value = "";
 
   propertiesStickers(newStickerId, newStickerValue, color);
