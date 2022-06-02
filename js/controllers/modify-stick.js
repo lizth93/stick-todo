@@ -33,7 +33,7 @@ function renderInfoToStikerToModify(idNumber) {
     }
   }
 
-  renderPopupModification(idNumber, colorActually, valueActually);
+  renderPopupModification(idNumber, colorActually, valueActually.trim());
   handlerClickOnSaveChangesToStick(idNumber);
 }
 

@@ -65,7 +65,7 @@ function handlerClickOnButtonNewStick(e) {
   const color = watchColorPicker();
   document.querySelector(".create-text-area").value = "";
 
-  propertiesStickers(newStickerId, newStickerValue, color);
+  propertiesStickers(newStickerId, newStickerValue.trim(), color);
   init();
 }
 
