@@ -1,0 +1,22 @@
+.btn-icon-smile {
+  fill: #1098ad;
+  stroke: #1098ad;
+  visibility: visible;
+  opacity: 1;
+  z-index: 20;
+}
+.trash__list {
+  list-style: none;
+}
+
+.trash {
+  padding: 3rem 3rem;
+  max-height: 85vh;
+  overflow: scroll;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  display: none;
+}

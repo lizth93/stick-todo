@@ -18,6 +18,7 @@ import { watchColorPicker } from "./colorPiker.js";
 import { listenRouteChange } from "./script-popup.js";
 
 export function init() {
+  // loadIconOfTrash()
   loadStickers();
   handlerClickOnButtonStickDelete();
   handlerClickOnBtnReturnItemOfTrash();

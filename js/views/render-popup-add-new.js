@@ -2,9 +2,6 @@ import { init } from "../controllers/add-new-stick";
 import { popup, clear } from "./render-popup-modify";
 
 export function renderPopupAddNewSticker(idHigest) {
-  const id = Number(idHigest);
-  console.log(idHigest, " this is the id on the render");
-
   clear();
   const markup = `
   <form class="popup" id="popup">
@@ -18,7 +15,7 @@ export function renderPopupAddNewSticker(idHigest) {
         <a href="#container" class="popup__close">&times;</a>
         <h2 class="u-margin-bottom-small">Create the Sticky</h2>
         <div class="popup__flex">
-          <label class="id-number">${id + 1} </label>
+          <label class="id-number">${Number(idHigest) + 1} </label>
           <div>
             <label for="create-text" class="create-text"
               >Input the text</label

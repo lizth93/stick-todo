@@ -47,11 +47,8 @@ export function saveChangesOnStick(e) {
   e.preventDefault();
   let colorNew = handlerClickColorPicker();
 
-  console.log("this is the new color", colorNew);
   let valueNew = document.querySelector(".create-text-area").value;
-  console.log("this is the new value", valueNew);
 
-  console.log(idNumber, "here idd");
   for (let i = 0; i < stickersList.length; i++) {
     if (Number(stickersList[i].id) === idNumber) {
       stickersList[i].color = colorNew;
@@ -60,5 +57,4 @@ export function saveChangesOnStick(e) {
   }
 
   organiceStickersWithStatusActive();
-  console.log(stickersList, "stickerslist");
 }

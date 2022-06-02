@@ -1,5 +1,4 @@
 let items = document.querySelector(".trash__list");
-
 const buttonsOnTrash = document.querySelectorAll(".btn-trash");
 
 function removeClassHiddenButtonsOnTrash() {
@@ -93,4 +92,55 @@ export function renderError(message = errorMessage) {
   htmlObject.innerHTML = markup;
 
   items.insertAdjacentElement("beforeend", htmlObject);
+}
+
+const spaceForIconTrash = document.querySelector(".nav__btn--trash");
+function clearIconTrash() {
+  spaceForIconTrash.innerHTML = "";
+}
+
+export function renderIconTrashEmpty() {
+  clearIconTrash();
+  const markupEmpty = `
+    <svg
+      width="24"
+      height="24"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      class="btn-icon-trash">
+      <path
+        d="M19 24h-14c-1.104 0-2-.896-2-2v-17h-1v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2h-1v17c0 1.104-.896 2-2 2zm-14-2.5c0 .276.224.5.5.5h13c.276 0 .5-.224.5-.5v-16.5h-14v16.5zm5-18.5h4v-1h-4v1z"
+      />
+  </svg>
+  <span> Trash</span>`;
+
+  const htmlObject = document.createElement("div");
+  htmlObject.innerHTML = markupEmpty;
+
+  spaceForIconTrash.insertAdjacentElement("beforeend", htmlObject);
+}
+
+export function renderIconTrashWithTrash() {
+  clearIconTrash();
+
+  const markupTrashWithTrash = `
+    <svg
+      width="24"
+      height="24"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      class="btn-icon-trash trash-stroke">
+      <path
+        d="M19 24h-14c-1.104 0-2-.896-2-2v-17h-1v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2h-1v17c0 1.104-.896 2-2 2zm-14-19v7h14v-7h-14zm9-3h-4v1h4v-1z"
+      />
+  </svg>
+  <span> Trash</span>
+`;
+
+  const htmlObject = document.createElement("div");
+  htmlObject.innerHTML = markupTrashWithTrash;
+
+  spaceForIconTrash.insertAdjacentElement("beforeend", htmlObject);
 }

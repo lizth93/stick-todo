@@ -6,6 +6,8 @@ import {
   clearOnTrash,
   renderStickerOnTrash,
   renderError,
+  renderIconTrashEmpty,
+  renderIconTrashWithTrash,
 } from "./views/render-sticker-trash";
 
 export function propertiesStickers(
@@ -39,6 +41,9 @@ export function loadStickers() {
 
   if (stickerStatusDelete.length === 0) {
     renderError();
+    renderIconTrashEmpty();
+  } else if (stickerStatusDelete.length > 0) {
+    renderIconTrashWithTrash();
   }
 
   stickerStatusDelete.forEach((stick) => {
