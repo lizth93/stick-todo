@@ -1,17 +1,24 @@
-// export default class ModifySticker {}
+import { renderPopupModification } from "../views/render-popup-modify";
 
-function modifySticker() {
-  document.querySelectorAll(".container").forEach((elem) => {
-    elem.addEventListener("click", () => {
-      const root = document.querySelector(".box");
-      console.log(root);
+export function handlerClickOnModifySticker() {
+  const btnModifyStick = document.querySelectorAll(".btn-box-edit");
 
-      // const markup = this.renderSmallImages(elem);
-      // root.innerHTML = "";
+  if (!btnModifyStick) return;
 
-      // root.insertAdjacentHTML("afterbegin", markup);
-    });
+  btnModifyStick.forEach((elem) => {
+    elem.removeEventListener("click", getIdNumberOfStick);
+    elem.addEventListener("click", getIdNumberOfStick);
   });
 }
 
-modifySticker();
+function getIdNumberOfStick(e) {
+  e.preventDefault();
+  const stick = e.target.closest(".box");
+  let idNumber = Number(stick.id);
+  console.log("the stick to edit is", idNumber);
+  moduleToModifySticker(idNumber);
+}
+
+function moduleToModifySticker(idNumber) {
+  renderPopupModification();
+}

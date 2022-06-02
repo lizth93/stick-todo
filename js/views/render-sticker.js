@@ -1,5 +1,3 @@
-// <!-- <div class="box" draggable="true" id="1">TEst</div> -->
-
 let items = document.querySelector(".container");
 
 export function renderSticker(stick) {
@@ -7,7 +5,7 @@ export function renderSticker(stick) {
   <div data-color="${stick.color}" style="background-color:${stick.color}" class="box" draggable="true" id=${stick.id}>
     <header class="header-stick">
         <div class="icon-edit">
-          <button class="btn-box"  draggable="false" >
+          <button class="btn-box btn-box-edit"  draggable="false" >
             <svg
               class="icon-stick"
               xmlns="http://www.w3.org/2000/svg"

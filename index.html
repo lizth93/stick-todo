@@ -20,7 +20,6 @@
     <link rel="icon" href="img/logo-icon.png" />
 
     <script type="module" src="index.js"></script>
-    <script type="module" src="/js/controllers/colorPiker.js"></script>
 
     <title>Sticky Notes</title>
   </head>
@@ -35,7 +34,7 @@
 
         <nav class="navigation">
           <ul class="navigation__list">
-            <li class="navigation__item">
+            <li class="navigation__item navigation__create-new">
               <a class="main-nav-link" href="#popup">
                 <svg
                   width="24"
@@ -86,53 +85,6 @@
       <section class="container" id="container"></section>
     </main>
 
-    <section class="section-popup">
-      <form class="popup" id="popup">
-        <div class="popup__content">
-          <div
-            class="popup-img-box"
-            role="img"
-            aria-label="image of postit"
-          ></div>
-          <div class="popup__right">
-            <a href="#container" class="popup__close">&times;</a>
-            <h2 class="u-margin-bottom-small">Create the Sticky</h2>
-            <div class="popup__flex">
-              <label class="id-number">0</label>
-              <div>
-                <label for="create-text" class="create-text"
-                  >Input the text</label
-                >
-                <br />
-                <textarea
-                  name="create-text"
-                  id="create-text"
-                  cols="45"
-                  rows="7"
-                  placeholder="Type the content"
-                  class="create-text-area u-margin-bottom-small"
-                  required
-                ></textarea>
-              </div>
-
-              <div>
-                <label for="create-color" class="create-text"
-                  >Select color</label
-                >
-                <br />
-                <input
-                  type="color"
-                  name="create-color"
-                  id="create-color"
-                  class="create-color"
-                  value="#1098ad"
-                />
-              </div>
-            </div>
-            <button class="btn btn--form popup-button-element">Create</button>
-          </div>
-        </div>
-      </form>
-    </section>
+    <section class="section-popup"></section>
   </body>
 </html>

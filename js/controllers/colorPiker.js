@@ -1,9 +1,10 @@
-let colorPicker = document.querySelector(".create-color");
+export function handlerClickColorPicker() {
+  let colorPicker = document.querySelector(".create-color");
+  colorPicker.addEventListener("input", watchColorPicker);
+  colorPicker.addEventListener("change", watchColorPicker);
+}
 
-colorPicker.addEventListener("input", watchColorPicker);
-colorPicker.addEventListener("change", watchColorPicker);
-export let color;
-
-function watchColorPicker() {
-  color = document.querySelector(".create-color").value;
+export function watchColorPicker() {
+  let color = document.querySelector(".create-color").value;
+  return color;
 }
