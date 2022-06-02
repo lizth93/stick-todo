@@ -13,6 +13,10 @@
   cursor: pointer;
   background-color: #3bc9db;
   margin-top: 2rem;
+  color: #fff;
+  text-decoration: none;
+  background-color: #3bc9db;
+  transition: all 0.2s;
 }
 
 .btn:hover {
@@ -33,12 +37,8 @@
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
 
-.btn-delete-all,
 .btn-restore-all {
-  color: #fff;
-  text-decoration: none;
-  background-color: #3bc9db;
-  transition: all 0.2s;
+  padding: 1rem 2rem;
 }
 
 .btn-box {

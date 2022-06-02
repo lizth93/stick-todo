@@ -110,8 +110,6 @@ function getIdNumberOfStickDelete(e) {
 function changeStatusOfStickerDelete(idNumber) {
   for (let i = 0; i < stickerStatusDelete.length; i++) {
     if (Number(stickerStatusDelete[i].id) === idNumber) {
-      // const activeElement = stickerStatusDelete[i];
-
       stickerStatusDelete.splice(i, 1);
 
       organiceStickersWithStatusActive();

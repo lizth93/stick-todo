@@ -5,6 +5,7 @@ import { init } from "./controllers/add-new-stick";
 import {
   clearOnTrash,
   renderStickerOnTrash,
+  renderError,
 } from "./views/render-sticker-trash";
 
 export function propertiesStickers(
@@ -35,6 +36,11 @@ export function loadStickers() {
   });
 
   clearOnTrash();
+
+  if (stickerStatusDelete.length === 0) {
+    renderError();
+  }
+
   stickerStatusDelete.forEach((stick) => {
     renderStickerOnTrash(stick);
   });
