@@ -6,6 +6,7 @@ function removeClassHiddenButtonsOnTrash() {
     button.classList.remove("hidden");
   });
 }
+
 export function renderStickerOnTrash(stick) {
   const markup = `
   <div data-color="${stick.color}" style="background-color:${stick.color}" class="box" draggable="true" id=${stick.id}>
@@ -50,7 +51,7 @@ export function renderStickerOnTrash(stick) {
   items.insertAdjacentElement("beforeend", htmlObject);
 }
 
-export function clearOnTrash() {
+export function clear() {
   items.innerHTML = "";
 }
 
@@ -64,10 +65,8 @@ function addClassHiddenButtonsOnTrash() {
   });
 }
 
-const errorMessage = "No trash yet!";
-export function renderError(message = errorMessage) {
+export function renderEmptyIndicator() {
   const markup = `
- 
     <div class="message">
       <div>
         <svg
@@ -83,7 +82,7 @@ export function renderError(message = errorMessage) {
           />
         </svg>
       </div>
-      <p>${message}</p>
+      <p>No trash yet!</p>
     </div>
     
  `;
@@ -121,7 +120,7 @@ export function renderIconTrashEmpty() {
   spaceForIconTrash.insertAdjacentElement("beforeend", htmlObject);
 }
 
-export function renderIconTrashWithTrash() {
+export function renderIconTrashFilled() {
   clearIconTrash();
 
   const markupTrashWithTrash = `
@@ -146,4 +145,38 @@ export function renderIconTrashWithTrash() {
   htmlObject.innerHTML = markupTrashWithTrash;
 
   spaceForIconTrash.insertAdjacentElement("beforeend", htmlObject);
+}
+
+export function onRecoverySticker(handler) {
+  const recoveryBtns = document.querySelectorAll(".icon-return");
+
+  if (!recoveryBtns) return;
+
+  recoveryBtns.forEach((x) => {
+    x.removeEventListener("click", handleClick);
+    x.addEventListener("click", handleClick);
+  });
+
+  function handleClick(e) {
+    e.preventDefault();
+    const sticker = e.target.closest(".box");
+    handler(Number(sticker.id));
+  }
+}
+
+export function onDestroySticker(handler) {
+  const destroyBtns = document.querySelectorAll(".btn-icon-delete");
+
+  if (!destroyBtns) return;
+
+  destroyBtns.forEach((x) => {
+    x.removeEventListener("click", handleClick);
+    x.addEventListener("click", handleClick);
+  });
+
+  function handleClick(e) {
+    e.preventDefault();
+    const sticker = e.target.closest(".box");
+    handler(Number(sticker.id));
+  }
 }

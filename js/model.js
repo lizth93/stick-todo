@@ -1,14 +1,15 @@
-export let stickersList = [];
-export let stickerStatusDelete = [];
-import { clear, renderSticker } from "../js/views/render-sticker";
+export let stickers = [];
+export let trashStickers = [];
+import { renderSticker } from "./views/stickers-view";
 import { init } from "./controllers/add-new-stick";
 import {
-  clearOnTrash,
+  clear as clearTrash,
   renderStickerOnTrash,
-  renderError,
+  renderEmptyIndicator,
   renderIconTrashEmpty,
-  renderIconTrashWithTrash,
-} from "./views/render-sticker-trash";
+  renderIconTrashFilled,
+} from "./views/trash-view";
+import { clear as clearStickers } from "./views/stickers-view";
 
 export function propertiesStickers(
   id,
@@ -23,41 +24,70 @@ export function propertiesStickers(
     status: status,
   };
 
-  stickersList.push(newSticker);
+  stickers.push(newSticker);
 
-  setItemsLocalStorageStickersOnWork(stickersList);
+  setItemsLocalStorageStickersOnWork(stickers);
 }
 
 export function loadStickers() {
-  const stickers = getStikersLocalStorage();
-  getStikersLocalStorageOnTrash();
-  clear();
+  loadStikersFromLS();
+  loadTrashStickersFromLS();
 
-  stickers.forEach((stick) => {
-    renderSticker(stick);
-  });
+  renderStickers();
+  renderTrash();
+}
 
-  clearOnTrash();
+export function loadStikersFromLS() {
+  const rawStickers = getStickersFromLocalStorage("localStickersList");
+  stickers = rawStickers && rawStickers.length ? rawStickers : [];
+}
 
-  if (stickerStatusDelete.length === 0) {
-    renderError();
-    renderIconTrashEmpty();
-  } else if (stickerStatusDelete.length > 0) {
-    renderIconTrashWithTrash();
+function getStickersFromLocalStorage(key) {
+  const rawStickers = localStorage.getItem(key);
+
+  try {
+    const stickersParsed = JSON.parse(rawStickers);
+
+    return stickersParsed;
+  } catch (err) {
+    console.log(
+      `Stickers with key ${key} got corrupted. Clearing local storage.`
+    );
+    localStorage.removeItem(key);
+
+    return null;
   }
+}
 
-  stickerStatusDelete.forEach((stick) => {
-    renderStickerOnTrash(stick);
-  });
+export function loadTrashStickersFromLS() {
+  const rawStickers = getStickersFromLocalStorage("localStickersListOnTrash");
+  trashStickers = rawStickers && rawStickers.length ? rawStickers : [];
+}
+
+function renderStickers() {
+  clearStickers();
+  stickers.forEach((stick, i) => renderSticker(stick));
+}
+
+function renderTrash() {
+  clearTrash();
+
+  if (trashStickers.length === 0) {
+    renderEmptyIndicator();
+    renderIconTrashEmpty();
+  } else {
+    renderIconTrashFilled();
+    trashStickers.forEach((stick) => renderStickerOnTrash(stick));
+  }
 }
 
 export function organiceStickersWithStatusDelete() {
-  for (let i = 0; i < stickersList.length; i++) {
-    if (stickersList[i].status === "delete") {
-      const deleteElement = stickersList[i];
+  for (let i = 0; i < stickers.length; i++) {
+    if (stickers[i].status === "delete") {
+      const deleteElement = stickers[i];
 
-      stickerStatusDelete.push(deleteElement);
-      stickersList.splice(i, 1);
+      trashStickers.push(deleteElement);
+      stickers.splice(i, 1);
     }
   }
 
@@ -65,21 +95,21 @@ export function organiceStickersWithStatusDelete() {
 }
 
 export function organiceStickersWithStatusActive() {
-  for (let i = 0; i < stickerStatusDelete.length; i++) {
-    if (stickerStatusDelete[i].status === "active") {
-      const activeElement = stickerStatusDelete[i];
+  for (let i = 0; i < trashStickers.length; i++) {
+    if (trashStickers[i].status === "active") {
+      const activeElement = trashStickers[i];
 
-      stickersList.push(activeElement);
-      stickerStatusDelete.splice(i, 1);
+      stickers.push(activeElement);
+      trashStickers.splice(i, 1);
     }
   }
 
   refreshItemsLocalStorage();
 }
 
-function refreshItemsLocalStorage() {
-  setItemsLocalStorageStickersOnWork(stickersList);
-  setItemsLocalStorageStickersOnTrash(stickerStatusDelete);
+export function refreshItemsLocalStorage() {
+  setItemsLocalStorageStickersOnWork(stickers);
+  setItemsLocalStorageStickersOnTrash(trashStickers);
   init();
 }
 
@@ -94,33 +124,41 @@ export function setItemsLocalStorageStickersOnTrash(stickersList) {
   );
 }
 
-export function getStikersLocalStorage() {
-  const stickers = getStickersFromLocalStorage("localStickersList");
-  stickersList = stickers && stickers.length ? stickers : [];
-
-  return stickersList;
-}
-
-export function getStikersLocalStorageOnTrash() {
-  const stickers = getStickersFromLocalStorage("localStickersListOnTrash");
-  stickerStatusDelete = stickers && stickers.length ? stickers : [];
-
-  return stickerStatusDelete;
-}
-
-function getStickersFromLocalStorage(key) {
-  const stickers = localStorage.getItem(key);
-
-  try {
-    const stickersParsed = JSON.parse(stickers);
-
-    return stickersParsed;
-  } catch (err) {
-    console.log(
-      `Stickers with key ${key} got corrupted. Clearing local storage.`
-    );
-    localStorage.removeItem(key);
-
-    return null;
+export function deleteStickerById(id) {
+  for (let i = 0; i < stickers.length; i++) {
+    if (Number(stickers[i].id) === id) {
+      stickers[i].status = "delete";
+      const deleteElement = stickers[i];
+      trashStickers.push(deleteElement);
+      stickers.splice(i, 1);
+    }
   }
+
+  setItemsLocalStorageStickersOnWork(stickers);
+  setItemsLocalStorageStickersOnTrash(trashStickers);
+}
+
+export function recoverStickerById(id) {
+  for (let i = 0; i < trashStickers.length; i++) {
+    if (Number(trashStickers[i].id) === id) {
+      trashStickers[i].status = "active";
+      const sticker = trashStickers[i];
+      stickers.push(sticker);
+      trashStickers.splice(i, 1);
+    }
+  }
+
+  setItemsLocalStorageStickersOnWork(stickers);
+  setItemsLocalStorageStickersOnTrash(trashStickers);
+}
+
+export function destroyStickerById(id) {
+  for (let i = 0; i < trashStickers.length; i++) {
+    if (Number(trashStickers[i].id) === id) {
+      trashStickers.splice(i, 1);
+    }
+  }
+
+  setItemsLocalStorageStickersOnWork(stickers);
+  setItemsLocalStorageStickersOnTrash(trashStickers);
 }

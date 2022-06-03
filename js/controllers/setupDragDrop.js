@@ -1,5 +1,5 @@
 import { setItemsLocalStorageStickersOnWork, loadStickers } from "../model.js";
-import { getStickers } from "../views/render-sticker";
+import { getStickers } from "../views/stickers-view";
 import { init } from "./add-new-stick.js";
 
 let dragSrcEl;

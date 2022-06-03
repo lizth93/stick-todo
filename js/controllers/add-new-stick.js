@@ -1,28 +1,25 @@
 import { eventDragStartAndDragEnd } from "./setupDragDrop.js";
 import {
-  handlerClickOnButtonStickDelete,
-  handlerClickOnBtnReturnItemOfTrash,
+  setupStickersDeletion,
+  setupStickersRecovery,
   deleteAllItemsOnTheTrash,
-  handlerClickOnBtnDeleteItemOfTrash,
+  setupStickersDestruction,
   handlerClickOnBtnRestoreAll,
-} from "./controller-trash.js";
-
-import { getStickersDeteled } from "../views/render-sticker-trash";
+} from "./trash-controller.js";
+import { getStickersDeteled } from "../views/trash-view";
 import { handlerClickColorPicker } from "./colorPiker.js";
 import { propertiesStickers, loadStickers } from "../model.js";
-import { getStickers } from "../views/render-sticker";
+import { getStickers } from "../views/stickers-view";
 import { handlerClickOnModifySticker } from "./modify-stick";
 import { renderPopupAddNewSticker } from "../views/render-popup-add-new";
-
 import { watchColorPicker } from "./colorPiker.js";
 import { listenRouteChange } from "./script-popup.js";
 
 export function init() {
-  // loadIconOfTrash()
   loadStickers();
-  handlerClickOnButtonStickDelete();
-  handlerClickOnBtnReturnItemOfTrash();
-  handlerClickOnBtnDeleteItemOfTrash();
+  setupStickersDeletion();
+  setupStickersRecovery();
+  setupStickersDestruction();
   deleteAllItemsOnTheTrash();
   handlerClickOnBtnRestoreAll();
   eventDragStartAndDragEnd();

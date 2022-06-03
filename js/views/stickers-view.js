@@ -51,3 +51,24 @@ export function clear() {
 export function getStickers() {
   return document.querySelectorAll(".container .box");
 }
+
+export function onDeleteSticker(handler) {
+  const deleteBtns = document.querySelectorAll(".icon-delete");
+
+  if (!deleteBtns) return;
+
+  deleteBtns.forEach((x) => {
+    x.removeEventListener("click", handleDeleteClick);
+    x.addEventListener("click", handleDeleteClick);
+  });
+
+  function handleDeleteClick(e) {
+    e.preventDefault();
+    const stick = e.target.closest(".box");
+    handler(Number(stick.id));
+  }
+}
+
+export function getStickersDeleteBts() {
+  return document.querySelectorAll(".icon-delete");
+}

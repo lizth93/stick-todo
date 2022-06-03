@@ -1,4 +1,4 @@
-import { organiceStickersWithStatusActive, stickersList } from "../model";
+import { organiceStickersWithStatusActive, stickers } from "../model";
 import { renderPopupModification } from "../views/render-popup-modify";
 import { handlerClickColorPicker } from "./colorPiker";
 
@@ -26,10 +26,10 @@ function renderInfoToStikerToModify(idNumber) {
   let colorActually;
   let valueActually;
 
-  for (let i = 0; i < stickersList.length; i++) {
-    if (Number(stickersList[i].id) === idNumber) {
-      colorActually = stickersList[i].color;
-      valueActually = stickersList[i].value;
+  for (let i = 0; i < stickers.length; i++) {
+    if (Number(stickers[i].id) === idNumber) {
+      colorActually = stickers[i].color;
+      valueActually = stickers[i].value;
     }
   }
 
@@ -49,10 +49,10 @@ export function saveChangesOnStick(e) {
 
   let valueNew = document.querySelector(".create-text-area").value;
 
-  for (let i = 0; i < stickersList.length; i++) {
-    if (Number(stickersList[i].id) === idNumber) {
-      stickersList[i].color = colorNew;
-      stickersList[i].value = valueNew;
+  for (let i = 0; i < stickers.length; i++) {
+    if (Number(stickers[i].id) === idNumber) {
+      stickers[i].color = colorNew;
+      stickers[i].value = valueNew;
     }
   }
 

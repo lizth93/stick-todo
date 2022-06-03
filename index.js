@@ -1,5 +1,5 @@
-import { start } from "./js/controllers/router";
+import { init } from "./js/controllers/add-new-stick";
 
-(function init() {
-  start();
+(function () {
+  init();
 })();
