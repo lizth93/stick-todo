@@ -1,4 +1,3 @@
-import { init } from "../controllers/add-new-stick";
 import { popup, clear } from "./render-popup-modify";
 
 export function renderPopupAddNewSticker(idHigest) {
@@ -57,5 +56,4 @@ export function renderPopupAddNewSticker(idHigest) {
   popup.insertAdjacentElement("beforeend", htmlObject);
 
   window.location.hash = "#popup";
-  // init();
 }

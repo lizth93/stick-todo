@@ -55,7 +55,7 @@ export function clear() {
   items.innerHTML = "";
 }
 
-export function getStickersDeteled() {
+export function getDeletedStickers() {
   return document.querySelectorAll(".trash .box");
 }
 
@@ -179,4 +179,20 @@ export function onDestroySticker(handler) {
     const sticker = e.target.closest(".box");
     handler(Number(sticker.id));
   }
+}
+
+export function onDestroyStickers(handler) {
+  const destroyAllBtn = document.querySelector(".btn-delete-all");
+
+  if (!destroyAllBtn) return;
+
+  destroyAllBtn.removeEventListener("click", handler);
+  destroyAllBtn.addEventListener("click", handler);
+}
+
+export function onRestoreStickers(handler) {
+  const restoreAllBtn = document.querySelector(".btn-restore-all");
+
+  restoreAllBtn.removeEventListener("click", handler);
+  restoreAllBtn.addEventListener("click", handler);
 }

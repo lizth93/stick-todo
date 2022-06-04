@@ -67,13 +67,15 @@
   z-index: 10;
   width: 40rem;
 
+  border-radius: 3px;
   box-shadow: 0 0.8rem 5rem 2rem rgba(134, 156, 160, 0.342);
   top: 4.6rem;
   text-align: center;
   visibility: hidden;
   opacity: 0;
-  transition: all 0.5s 0.2s;
-  overflow: scroll;
+
+  transition: all 0.1s;
+  overflow-y: auto;
 }
 
 .trash-items {

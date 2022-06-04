@@ -1,3 +1,5 @@
+import { handlerClickColorPicker } from "../controllers/colorPiker";
+
 export let popup = document.querySelector(".section-popup");
 
 export function renderPopupModification(
@@ -64,4 +66,35 @@ export function renderPopupModification(
 
 export function clear() {
   popup.innerHTML = "";
+}
+
+export function onModificationSticker(handler) {
+  const modificationStickBtn = document.querySelectorAll(".btn-box-edit");
+
+  if (!modificationStickBtn) return;
+
+  modificationStickBtn.forEach((elem) => {
+    elem.removeEventListener("click", handleClick);
+    elem.addEventListener("click", handleClick);
+  });
+
+  function handleClick(e) {
+    e.preventDefault();
+    const sticker = e.target.closest(".box");
+    handler(Number(sticker.id));
+  }
+}
+
+export function onSaveModificationSticker(handler) {
+  const saveStickBtn = document.querySelector(".popup-button-element");
+  saveStickBtn.removeEventListener("click", handleClick);
+  saveStickBtn.addEventListener("click", handleClick);
+
+  function handleClick(e) {
+    e.preventDefault();
+    let colorNew = handlerClickColorPicker();
+    let valueNew = document.querySelector(".create-text-area").value;
+
+    handler(colorNew, valueNew);
+  }
 }

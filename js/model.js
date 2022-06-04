@@ -162,3 +162,32 @@ export function destroyStickerById(id) {
   setItemsLocalStorageStickersOnWork(stickers);
   setItemsLocalStorageStickersOnTrash(trashStickers);
 }
+
+export function restoreStickers() {
+  for (let i = 0; i < trashStickers.length; i++) {
+    trashStickers[i].status = "active";
+  }
+
+  stickers = stickers.concat(trashStickers);
+  trashStickers = [];
+
+  setItemsLocalStorageStickersOnWork(stickers);
+  setItemsLocalStorageStickersOnTrash(trashStickers);
+}
+
+export function modifyStickers(stickerId, colorNew, valueNew) {
+  for (let i = 0; i < stickers.length; i++) {
+    if (Number(stickers[i].id) === stickerId) {
+      stickers[i].color = colorNew;
+      stickers[i].value = valueNew;
+    }
+  }
+
+  organiceStickersWithStatusActive();
+  setItemsLocalStorageStickersOnWork(stickers);
+  setItemsLocalStorageStickersOnTrash(trashStickers);
+}
+
+export function destroyStickers() {
+  localStorage.removeItem("localStickersListOnTrash");
+}

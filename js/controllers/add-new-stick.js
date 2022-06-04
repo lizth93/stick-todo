@@ -2,15 +2,15 @@ import { eventDragStartAndDragEnd } from "./setupDragDrop.js";
 import {
   setupStickersDeletion,
   setupStickersRecovery,
-  deleteAllItemsOnTheTrash,
+  setupCompleteStickersDestruction,
   setupStickersDestruction,
-  handlerClickOnBtnRestoreAll,
+  setupCompleteStickersRestore,
 } from "./trash-controller.js";
-import { getStickersDeteled } from "../views/trash-view";
+import { getDeletedStickers } from "../views/trash-view";
 import { handlerClickColorPicker } from "./colorPiker.js";
 import { propertiesStickers, loadStickers } from "../model.js";
 import { getStickers } from "../views/stickers-view";
-import { handlerClickOnModifySticker } from "./modify-stick";
+import { setupStickerModification } from "./modify-stick";
 import { renderPopupAddNewSticker } from "../views/render-popup-add-new";
 import { watchColorPicker } from "./colorPiker.js";
 import { listenRouteChange } from "./script-popup.js";
@@ -20,10 +20,10 @@ export function init() {
   setupStickersDeletion();
   setupStickersRecovery();
   setupStickersDestruction();
-  deleteAllItemsOnTheTrash();
-  handlerClickOnBtnRestoreAll();
+  setupCompleteStickersDestruction();
+  setupCompleteStickersRestore();
   eventDragStartAndDragEnd();
-  handlerClickOnModifySticker();
+  setupStickerModification();
   handlerClickOnCreateNewSticker();
   listenRouteChange();
 }
@@ -33,7 +33,7 @@ let sticksDelete;
 let idHigest = 0;
 export function getIdNumber() {
   sticks = getStickers();
-  sticksDelete = getStickersDeteled();
+  sticksDelete = getDeletedStickers();
 
   theHigestNumber(sticks);
   theHigestNumber(sticksDelete);
