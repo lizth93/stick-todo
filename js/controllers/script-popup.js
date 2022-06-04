@@ -1,5 +1,5 @@
 import { getIdNumber } from "./add-new-stick";
-import { eventDragStartAndDragEnd } from "./setupDragDrop.js";
+import { onDragAndDropEnd } from "../views/drag-and-drop-view.js";
 
 export function listenRouteChange() {
   ["hashchange", "load"].forEach((eventName) => {
@@ -35,7 +35,7 @@ function closePopupByOutsideClick(
       window.location.hash = "#";
 
       getIdNumber();
-      eventDragStartAndDragEnd();
+      onDragAndDropEnd();
     });
 
     popupContent.addEventListener("click", (e) => {

@@ -1,4 +1,3 @@
-import { eventDragStartAndDragEnd } from "./setupDragDrop.js";
 import {
   setupStickersDeletion,
   setupStickersRecovery,
@@ -14,6 +13,7 @@ import { setupStickerModification } from "./modify-stick";
 import { renderPopupAddNewSticker } from "../views/render-popup-add-new";
 import { watchColorPicker } from "./colorPiker.js";
 import { listenRouteChange } from "./script-popup.js";
+import { setupDragAndDrop } from "./stickers-ctrl";
 
 export function init() {
   loadStickers();
@@ -22,7 +22,7 @@ export function init() {
   setupStickersDestruction();
   setupCompleteStickersDestruction();
   setupCompleteStickersRestore();
-  eventDragStartAndDragEnd();
+  setupDragAndDrop();
   setupStickerModification();
   handlerClickOnCreateNewSticker();
   listenRouteChange();

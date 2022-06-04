@@ -191,3 +191,8 @@ export function modifyStickers(stickerId, colorNew, valueNew) {
 export function destroyStickers() {
   localStorage.removeItem("localStickersListOnTrash");
 }
+
+export function setStickers(newStickers) {
+  stickers = newStickers;
+  setItemsLocalStorageStickersOnWork(stickers);
+}
