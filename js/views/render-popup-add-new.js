@@ -12,7 +12,7 @@ export function renderPopupAddNewSticker(idHigest) {
       ></div>
       <div class="popup__right">
         <a href="#container" class="popup__close">&times;</a>
-        <h2 class="u-margin-bottom-small">Create the Sticky</h2>
+        <h2 class="u-margin-bottom-small">Add the Sticky</h2>
         <div class="popup__flex">
           <label class="id-number">${Number(idHigest) + 1} </label>
           <div>
