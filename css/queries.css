@@ -45,5 +45,10 @@
 
   .trash {
     min-width: 30rem;
+    padding: 2rem 2rem;
+  }
+
+  .btn {
+    margin-top: 1rem;
   }
 }
