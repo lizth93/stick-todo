@@ -23,7 +23,12 @@
   }
 
   .navigation__list {
-    gap: 2.8rem;
+    gap: 1.8rem;
+  }
+
+  .main-nav-link:link,
+  .main-nav-link:visited {
+    font-size: 1.6rem;
   }
 
   .popup__content {
