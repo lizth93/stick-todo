@@ -42,4 +42,8 @@
 
     color: #333;
   }
+
+  .trash {
+    min-width: 30rem;
+  }
 }
