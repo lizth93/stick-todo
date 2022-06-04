@@ -15,8 +15,10 @@
   html {
     font-size: 55%;
   }
+
   .header {
-    padding: 0 1.8rem;
+    justify-content: space-around;
+    padding: 0;
   }
   .header__logo {
     width: 80%;
