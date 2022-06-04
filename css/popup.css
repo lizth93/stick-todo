@@ -15,7 +15,7 @@
 .popup__content {
   display: flex;
   /* grid-template-columns: 1fr 1fr; */
-  background-image: linear-gradient(to right bottom, #e3fafc, #c5f6fa);
+  background-image: linear-gradient(to right bottom, #e3fafc, #ecf4f4);
   max-height: 50rem;
   position: absolute;
   margin: 0 auto;
@@ -34,7 +34,7 @@
 }
 
 .popup__right {
-  padding: 4rem;
+  padding: 3vh;
   flex-grow: 2;
 }
 
@@ -78,4 +78,10 @@ textarea {
   color: #777;
   margin-top: 2rem;
   padding: 0.5rem;
+  width: 95%;
+  height: 10rem;
+  border: none;
+}
+.create-color {
+  width: 15rem;
 }

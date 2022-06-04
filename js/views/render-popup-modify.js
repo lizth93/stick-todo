@@ -29,8 +29,7 @@ export function renderPopupModification(
             <textarea
               name="create-text"
               id="create-text"
-              cols="45"
-              rows="7"
+             
               placeholder="Type the content"
               class="create-text-area u-margin-bottom-small"
               required

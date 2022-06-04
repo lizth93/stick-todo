@@ -1,4 +1,13 @@
 /**************************/
+/*Below 750 */
+/**************************/
+@media only screen and (max-width: 46.875em) {
+  .popup-img-box {
+    width: 20%;
+  }
+}
+
+/**************************/
 /*Below 450 */
 /**************************/
 
@@ -15,5 +24,15 @@
 
   .navigation__list {
     gap: 2.8rem;
+  }
+
+  .popup__content {
+    width: 85%;
+    display: inline;
+    background-image: linear-gradient(to right bottom, #99e9f2cc, #81e8f6ad),
+      url("/img/postit.jpg");
+    background-size: cover;
+
+    color: #333;
   }
 }
