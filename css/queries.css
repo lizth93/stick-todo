@@ -14,6 +14,17 @@
   .copyrigth {
     display: inline-block;
   }
+
+  .footer {
+    padding: 1.2rem;
+  }
+  html {
+    padding-bottom: 17rem;
+  }
+
+  .logo-title {
+    gap: 1.5rem;
+  }
 }
 
 /**************************/
