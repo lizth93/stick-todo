@@ -6,6 +6,9 @@
 
 html {
   font-size: 62.5%;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 15rem;
 }
 
 body {

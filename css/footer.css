@@ -1,8 +1,35 @@
 .footer {
-  background-color: aqua;
-  margin-top: auto;
-  /* width: 100%;
-  display: grid;
+  color: #fff;
+  padding: 2rem;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background-color: #0b7285;
+}
 
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 35rem)); */
+.logo-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.title-app {
+  font-size: 2rem;
+  font-family: inherit;
+}
+.copyrigth {
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.icon-github {
+  fill: #fff;
+  width: 2rem;
+  height: 2rem;
+}
+
+.link-github {
+  text-decoration: none;
+  color: #fff;
 }
