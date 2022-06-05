@@ -18,9 +18,9 @@ To run this application in the work environment is necesary excecute this comman
 
 ## Demo to the app:
 
-if you want to see a demo to the app, please open this link:
+If you want to see a demo to the app, please open this link:
 https://stick-notes-luze.netlify.app/#
 
 ### Considerations:
 
-the drag and drop functionallity only works on desktop sites, because the most mobile browsers are not supported at the moment.
+The drag and drop functionallity only works on desktop sites, because the most mobile browsers are not supported at the moment.
